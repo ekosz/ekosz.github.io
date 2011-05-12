@@ -17,6 +17,7 @@ $(function() {
         $(self).html(data);
         bindA();
         bindNext();
+        $('pre code').each(function(i, e) {hljs.highlightBlock(e, '    ')});
       });
       $(self).fadeIn();
     }); 
@@ -49,6 +50,7 @@ $(function() {
   // MAIN LOOP
   bindA();
   bindNext();
+  $('pre code').each(function(i, e) {hljs.highlightBlock(e, '    ')});
   if(location.hash && location.hash !== '#!/') {
     changeLocation();
   }
