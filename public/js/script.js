@@ -3,6 +3,10 @@
 */
 
 $(function() {
+  // Creating custom :internal selector
+  $.expr[':'].internal = function(obj){
+    return !obj.href.match(/^mailto\:/) && (obj.hostname === location.hostname);
+  };
   changeLocation = function() {
     var l = location.hash.split('!/')[1] || '/';
     console.log(l);
@@ -18,7 +22,7 @@ $(function() {
     }); 
   }
   bindA = function() {
-    $('a').click(function(e) {
+    $('a:internal').click(function(e) {
       if(location.pathname === '/') {
         location.hash = '!'+$(this).attr('href');
         return false;
