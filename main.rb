@@ -129,7 +129,7 @@ def next_post(id, num=1)
     to_return << from_markdown(id)
   end
 
-  ending = post_array[-1] == id ? '<div id="theEnd">Thats it fokes!</div>' : "<div id='next'><a href='/from/#{id.split('-')[0..2].join('/')}'>Next >></a></div>"
+  ending = post_array[-1] == id ? '<div id="theEnd">That\'s all folks!</div>' : "<div id='next'><a href='/from/#{id.split('-')[0..2].join('/')}'>Next >></a></div>"
 
   to_return.join("\n")+ending
 end

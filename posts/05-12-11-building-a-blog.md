@@ -3,12 +3,12 @@
 
 There comes a time in every up and coming web developer's life that he realizes
 that he/she needs a blog.  And at that time they know that there are plenty of
-off the shelf blogging platforms, but in their heart of hearts they must build
+off the shelf blogging platforms, but in their heart of hearts they know they must build
 their own. And so thats what I did.
 
 I decided to make single web application, mostly inspired by the amazing guys
 over at [9Elements](http://www.9elements.com/). I've never really played with
-AJAX heavy applications before, and figured this would be an easy place to
+AJAX heavy applications before and figured this would be an easy place to
 start. On the backend I have [Sinatra](www.sinatrarb.com/) listening to HTTP
 calls, and on requests starting with `/ajax/` it serves up only the meat of the
 desired page, instead of the whole package.  The posts themselves are written in
@@ -35,20 +35,20 @@ As for the fonts I recently watched the
 Google web fonts. I decided to try out the [web font previewer](http://www.google.com/webfonts/preview) 
 and was blown away how easy it was to find the `line-height`, `letter-spacing`, and
 `word-spacing` that I wanted. I also found a little trick that came in handy.
-For fonts that aren't in Google's font library, like the font I'm using here
+For fonts that aren't in Google's font library, like the font I'm using here,
 `Helvetica Nue`, I still wanted to use the font previewer.  So, I used the
 inspector tool to manually change the `font-family` to what ever I wanted to
 test.
 
-Finally the header menu and footer I took inspiration from [Coffee Script's
+Finally for the header menu and footer, I took inspiration from [Coffee Script's
 Website](http://jashkenas.github.com/coffee-script/). I really liked the way
 one could scroll through a long document without the menu seeming too
 intrusive.  I also added a fade-out to the bottom of the page, so that the
 footer could travel with the page as well.
 
 
-For a compleate look at the website internals check it out on GitHub, and maybe
-mention a couple things I could have done better.  
+For a compleate look at the website internals check it out on [GitHub](https://github.com/ekosz/Personal-Blog), 
+and maybe mention a couple things I could have done better.  
 
 Overall I'm really happy with how it turned out.  I'm still not the best
 developer, and I'm far from a decent designer, but this is something that
