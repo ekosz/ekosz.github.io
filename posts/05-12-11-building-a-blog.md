@@ -9,7 +9,7 @@ their own. And so thats what I did.
 I decided to make single web application, mostly inspired by the amazing guys
 over at [9Elements](http://www.9elements.com/). I've never really played with
 AJAX heavy applications before and figured this would be an easy place to
-start. On the backend I have [Sinatra](www.sinatrarb.com/) listening to HTTP
+start. On the backend I have [Sinatra](http://www.sinatrarb.com/) listening to HTTP
 calls, and on requests starting with `/ajax/` it serves up only the meat of the
 desired page, instead of the whole package.  The posts themselves are written in
 [Markdown](http://daringfireball.net/projects/markdown/) and stored as plain
