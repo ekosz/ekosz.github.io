@@ -109,7 +109,7 @@ end
 ### FUNCTIONS ###
 def gen_post_url(post)
   p=post.split('-')
-  p[0..2].join('/')+'/'+p[3..-1].join('-')
+  'posts/'+p[0..2].join('/')+'/'+p[3..-1].join('-')
 end
 
 def gen_post_title(post)

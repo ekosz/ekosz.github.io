@@ -388,6 +388,8 @@ pre .tex .formula {
 }
 
 @media screen and (max-device-width: 480px) {
+  #fadeout-bottom { display: none; visibility: hidden; }
+  footer { position: relative; }
   
   /* html { -webkit-text-size-adjust:none; -ms-text-size-adjust:none; } */
 }
