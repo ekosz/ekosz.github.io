@@ -1,6 +1,7 @@
 GEM
   remote: http://rubygems.org/
   specs:
+    builder (3.0.0)
     kramdown (0.13.3)
     rack (1.2.2)
     sinatra (1.2.6)
@@ -12,5 +13,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  builder
   kramdown
   sinatra
