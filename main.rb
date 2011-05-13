@@ -1,6 +1,8 @@
 require 'rubygems'
 require 'sinatra'
 require 'kramdown'
+require 'builder'
+require 'time'
 
 not_found do
   '<div id="404">404 Not Found</div>'
@@ -54,6 +56,30 @@ get '/ajax/from/:month/:day/:year' do |month, day, year|
   next_post([month,day,year].join('-'))
 end
 
+get '/rss.xml' do
+  builder do |xml|
+    xml.instruct! :xml, :version => '1.0'
+    xml.rss :version => "2.0" do
+      xml.channel do
+        xml.title "Blog Name Here"
+        xml.description "A blog about stuff."
+        xml.link "http://blognamehere.com/"
+
+        gen_post_arry.each do |post|
+          xml.item do
+            xml.title gen_post_title(post)
+            xml.link "http://blognamehere.com/#{gen_post_url(post)}"
+            xml.description from_markdown(post)
+            xml.pubDate Time.parse(gen_post_date(post)).rfc822()
+            xml.guid "http://blognamehere.com/#{gen_post_url(post)}"
+          end
+        end
+      end
+    end
+  end
+end
+
+
 private
 
 ### SPECAIL PAGES ###
@@ -72,8 +98,7 @@ def history_content
 
   post_array.each do |post|
     to_return << "<div class='post'><h2>
-    <a href='/posts/#{p=post.split('-');p[0..2].join('/')+'/'+p[3..-1].join('-')}'>
-    #{post.split('-')[3..-1].join(' ')}
+    <a href='/posts/#{gen_post_url(post)}'> #{gen_post_title(post)}
     </a></h2></div>"
   end
   to_return << '</div>'
@@ -82,6 +107,21 @@ def history_content
 end
 
 ### FUNCTIONS ###
+def gen_post_url(post)
+  p=post.split('-')
+  p[0..2].join('/')+'/'+p[3..-1].join('-')
+end
+
+def gen_post_title(post)
+  post.split('-')[3..-1].join(' ')
+end
+
+def gen_post_date(post)
+  p = post.split('-')
+  #Year, Month, Day
+  [p[2], p[0], p[1]].join('/') 
+end
+
 def gen_post_arry
   Dir.glob('posts/*').map {|m| m =~ /\/([^\/]+)\.md$/; $1}.sort_by do |a|
     a = a.split('-')
