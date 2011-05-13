@@ -98,7 +98,7 @@ def history_content
 
   post_array.each do |post|
     to_return << "<div class='post'><h2>
-    <a href='/posts/#{gen_post_url(post)}'> #{gen_post_title(post)}
+    <a href='#{gen_post_url(post)}'> #{gen_post_title(post)}
     </a></h2></div>"
   end
   to_return << '</div>'
