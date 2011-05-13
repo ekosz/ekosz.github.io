@@ -231,6 +231,13 @@ footer {
   background: lightblue;
 }
 
+code {
+  background: #CCCCD0;
+  border: 1px solid black;
+  font-size: 80%;
+  padding: 1px;
+}
+
 /*
  
 github.com style (c) Vasily Polovnyov <vast@whiteants.net>
@@ -242,6 +249,7 @@ pre code {
   color: #000;
   background: #f8f8ff;
   font-size: 24px;
+  border: none;
 }
  
 pre .comment,
