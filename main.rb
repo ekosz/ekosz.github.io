@@ -63,15 +63,15 @@ get '/rss.xml' do
       xml.channel do
         xml.title "Blog Name Here"
         xml.description "A blog about stuff."
-        xml.link "http://blognamehere.com/"
+        xml.link "http://blognamehere.com"
 
         gen_post_arry.each do |post|
           xml.item do
             xml.title gen_post_title(post)
-            xml.link "http://blognamehere.com/#{gen_post_url(post)}"
+            xml.link "http://blognamehere.com#{gen_post_url(post)}"
             xml.description from_markdown(post)
             xml.pubDate Time.parse(gen_post_date(post)).rfc822()
-            xml.guid "http://blognamehere.com/#{gen_post_url(post)}"
+            xml.guid "http://blognamehere.com#{gen_post_url(post)}"
           end
         end
       end
@@ -109,7 +109,7 @@ end
 ### FUNCTIONS ###
 def gen_post_url(post)
   p=post.split('-')
-  'posts/'+p[0..2].join('/')+'/'+p[3..-1].join('-')
+  '/posts/'+p[0..2].join('/')+'/'+p[3..-1].join('-')
 end
 
 def gen_post_title(post)
