@@ -186,8 +186,8 @@ header #navigation .button:hover {
 }
 #history {
   -moz-column-count: 2;
-	-webkit-column-count: 2;
-	column-count: 2;
+  -webkit-column-count: 2;
+  column-count: 2;
 }  
 #history h2 {
   font-size: 68px;
@@ -235,12 +235,27 @@ code {
   padding: 1px;
 }
 
+#missing {
+  text-align: center;
+  height: 100px;
+  line-height: 100px;
+  font-size: 3em;
+  background: yellow;
+  border: 2px dashed black;
+  margin-top: 250px;
+  -moz-transform: rotate(20deg);  
+  -o-transform: rotate(20deg);  
+  -webkit-transform: rotate(20deg);  
+  -ms-transform: rotate(20deg);  
+  transform: rotate(20deg);  
+ }  
+
 /*
- 
+
 github.com style (c) Vasily Polovnyov <vast@whiteants.net>
- 
+
 */
- 
+
 pre code {
   display: block; padding: 0.5em;
   color: #000;
@@ -248,7 +263,7 @@ pre code {
   font-size: 24px;
   border: none;
 }
- 
+
 pre .comment,
 pre .template_comment,
 pre .diff .header,
@@ -256,7 +271,7 @@ pre .javadoc {
   color: #998;
   font-style: italic
 }
- 
+
 pre .keyword,
 pre .css .rule .keyword,
 pre .winutils,
@@ -266,37 +281,37 @@ pre .subst {
   color: #000;
   font-weight: bold
 }
- 
+
 pre .number,
 pre .hexcolor {
   color: #40a070
 }
- 
+
 pre .string,
 pre .tag .value,
 pre .phpdoc,
 pre .tex .formula {
   color: #d14
 }
- 
+
 pre .title,
 pre .id {
   color: #900;
   font-weight: bold
 }
- 
+
 pre .javascript .title,
 pre .lisp .title,
 pre .subst {
   font-weight: normal
 }
- 
+
 pre .class .title,
 pre .tex .command {
   color: #458;
   font-weight: bold
 }
- 
+
 pre .tag,
 pre .css .keyword,
 pre .html .keyword,
@@ -305,23 +320,23 @@ pre .django .tag .keyword {
   color: #000080;
   font-weight: normal
 }
- 
+
 pre .attribute,
 pre .variable,
 pre .instancevar,
 pre .lisp .body {
   color: #008080
 }
- 
+
 pre .regexp {
   color: #009926
 }
- 
+
 pre .class {
   color: #458;
   font-weight: bold
 }
- 
+
 pre .symbol,
 pre .ruby .symbol .string,
 pre .ruby .symbol .keyword,
@@ -330,13 +345,13 @@ pre .lisp .keyword,
 pre .tex .special {
   color: #990073
 }
- 
+
 pre .builtin,
 pre .built_in,
 pre .lisp .title {
   color: #0086b3
 }
- 
+
 pre .preprocessor,
 pre .pi,
 pre .doctype,
@@ -345,23 +360,23 @@ pre .cdata {
   color: #999;
   font-weight: bold
 }
- 
+
 pre .deletion {
   background: #fdd
 }
- 
+
 pre .addition {
   background: #dfd
 }
- 
+
 pre .diff .change {
   background: #0086b3
 }
- 
+
 pre .chunk {
   color: #aaa
 }
- 
+
 pre .tex .formula {
   opacity: 0.5;
 }
@@ -395,14 +410,14 @@ pre .tex .formula {
 @media screen and (max-device-width: 480px) {
   #fadeout-bottom { display: none; visibility: hidden; }
   footer { position: relative; }
-  
+
   /* html { -webkit-text-size-adjust:none; -ms-text-size-adjust:none; } */
 }
 
 
 @media print {
   * { background: transparent !important; color: black !important; text-shadow: none !important; filter:none !important;
-  -ms-filter: none !important; } 
+    -ms-filter: none !important; } 
   a, a:visited { color: #444 !important; text-decoration: underline; }
   a[href]:after { content: " (" attr(href) ")"; }
   abbr[title]:after { content: " (" attr(title) ")"; }

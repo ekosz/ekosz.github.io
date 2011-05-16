@@ -5,11 +5,11 @@ require 'builder'
 require 'time'
 
 not_found do
-  '<div id="404">404 Not Found</div>'
+  full_html('<div id="missing">404 Not Found</div>')
 end
 
 error do
-  '<div id="error">Fuck, you broke it!</div>'
+  full_html('<div id="error">Fuck, you broke it!</div>')
 end
 
 ### Real Calls ###
