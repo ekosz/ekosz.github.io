@@ -103,7 +103,6 @@ header {
   background-image:      -o-linear-gradient(top, white, #999999); /* Opera 11.10+ */
   background-image:         linear-gradient(top, white, #999999);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='white', EndColorStr='#999999'); /* IE6–IE9 */
-  
 }
 header #navigation { width: 515px; margin: auto; }
 header #navigation .button {
@@ -116,6 +115,9 @@ header #navigation .button {
   text-align: center;
   line-height: 50px;
   cursor: pointer;
+  -webkit-transition: background .5s ease-out;
+  -moz-transition: background .5s ease-out;
+  transition: background .5s ease-out;
 }
 header #navigation .button a {
   display: block;
@@ -123,14 +125,10 @@ header #navigation .button a {
   height: 100%;
 }
 header #navigation .button:hover {
-  background-color: lightblue;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(lightblue), to(#999999)); /* Saf4+, Chrome */
-  background-image: -webkit-linear-gradient(top, lightblue, #999999); /* Chrome 10+, Saf5.1+ */
-  background-image:    -moz-linear-gradient(top, lightblue, #999999); /* FF3.6 */
-  background-image:     -ms-linear-gradient(top, lightblue, #999999); /* IE10 */
-  background-image:      -o-linear-gradient(top, lightblue, #999999); /* Opera 11.10+ */
-  background-image:         linear-gradient(top, lightblue, #999999);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='lightblue', EndColorStr='#999999'); /* IE6–IE9 */
+  background: rgba(173, 216, 230, .25);
+  -webkit-transition: background .5s ease-out;
+  -moz-transition: background .5s ease-out;
+  transition: background .5s ease-out;
 }
 #fadeout-top, #fadeout-bottom {
   z-index: 50;
