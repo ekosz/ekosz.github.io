@@ -7,7 +7,7 @@ Why the code for this blog looks like crap
 ------------------------------------------
 
 When first getting into Ruby, I thought Rails was coolest thing since dynamic
-variables.  It was pure magic.  Using a complicated mix of meta-programing and
+variables.  It was pure magic.  Using a complicated mix of meta-programming and
 Ruby Ninjaing in the background, Rails allows the average developer to do really
 complex things with only a few commands.  And that was awesome.
 
@@ -44,7 +44,7 @@ spirited.  I would have to create a couple controllers, break REST
 create a Post model, fiddle around trying to serve AJAX content, and generally
 not have such a free experience.
 
-\_why is one of my all time heroes when it comes to programing. His opinion was that coding
+\_why is one of my all time heroes when it comes to programming. His opinion was that coding
 is much more of an art than a business. Sure its a lot safer to write unit
 tests, and have these standard sub-systems for everything, but what if
 we just want to express ourselves in our code?  What if I don't care about all
