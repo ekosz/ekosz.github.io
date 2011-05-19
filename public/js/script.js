@@ -12,18 +12,17 @@ $(function() {
     console.log(l);
     $("#main").fadeOut(function() {
       var self = this;
-      $(self).empty();
-      $.get('ajax/'+l, function(data) {
-        $(self).html(data);
-        bindA();
-        bindNext();
-        $('pre code').each(function(i, e) {hljs.highlightBlock(e, '    ')});
+      $(self).empty(); // Remove #main content
+      $.get('ajax/'+l, function(data) { //Grab AJAX content
+        $(self).html(data); //Set #main content
+        rebind();
+        _gaq.push(['_trackPageview', '/#!/'+l]); //Track Ajax Pages in Google analytics
+        $(self).fadeIn(); // Apear the new content
       });
-      $(self).fadeIn();
     }); 
   }
   bindA = function() {
-    $('a:internal').click(function(e) {
+    $('a:internal').unbind('click.a').bind('click.a', function(e) {
       if(location.pathname === '/') {
         location.hash = '!'+$(this).attr('href');
         return false;
@@ -37,20 +36,23 @@ $(function() {
         $.get('ajax'+$("#next a").attr('href'), function(data) {
           $(self).remove();
           $("#main").append(data);
-          bindA();
+          rebind();
         });
       });
     });
   }
-
-
-  $(window).bind('hashchange', changeLocation);
+  rebind = function() {
+    if("onhashchange" in window) { //Just use regular links if not a modern browser
+      $(window).unbind('hashchange.b').bind('hashchange.b', changeLocation);
+      bindA();
+    }
+    bindNext();
+    $('pre code').each(function(i, e) {hljs.highlightBlock(e, '    ')});
+  }
 
 
   // MAIN LOOP
-  bindA();
-  bindNext();
-  $('pre code').each(function(i, e) {hljs.highlightBlock(e, '    ')});
+  rebind();
   if(location.hash && location.hash !== '#!/') {
     changeLocation();
   }
