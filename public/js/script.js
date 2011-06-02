@@ -11,12 +11,19 @@ $(function() {
     var l = location.hash.split('!/')[1] || '/';
     console.log(l);
     $("#main").fadeOut(function() {
+      // Add the loading splash
+      $("body").prepend(
+        $("<div />").attr('id', 'loading').text("Loading")
+        .css('top', (window.innerHeight / 2) - (55 / 2))
+        .css('left', (window.innerWidth / 2) - (200 / 2))
+      );
       var self = this;
       $(self).empty(); // Remove #main content
       $.get('ajax/'+l, function(data) { //Grab AJAX content
         $(self).html(data); //Set #main content
         rebind();
         _gaq.push(['_trackPageview', '/#!/'+l]); //Track Ajax Pages in Google analytics
+        $("#loading").remove(); // Remove the loading splash
         $(self).fadeIn(); // Apear the new content
       });
     }); 
