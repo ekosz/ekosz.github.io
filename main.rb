@@ -3,6 +3,7 @@ require 'sinatra'
 require 'kramdown'
 require 'builder'
 require 'time'
+require 'open-uri'
 
 not_found do
   full_html('<div id="missing">404 Not Found</div>')
@@ -15,6 +16,7 @@ end
 ### Real Calls ###
 
 get '/' do
+  redirect params[:_escaped_fragment_] if params[:_escaped_fragment_]
   full_html(index_content)
 end
 
