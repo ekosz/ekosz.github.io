@@ -424,6 +424,11 @@ pre .tex .formula {
 
   /* html { -webkit-text-size-adjust:none; -ms-text-size-adjust:none; } */
 }
+@media screen and (min-device-width: 481px) and (max-device-width: 1024px) {
+  #fadeout-bottom { display: none; visibility: hidden; }
+  footer { position: relative; }
+}
+
 
 
 @media print {
