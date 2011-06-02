@@ -21,9 +21,9 @@ posts is stored in the name of the files.  For example, the name of this file
 is `05-12-11-building-a-blog.md`.  This gives the date for the application to
 sort posts by, as well as the title to display.
 
-As for 3rd party tools I used for this project, I am using [Jquery](http://jquery.com/),
-[HTML 5 Boilerplate](http://html5boilerplate.com/), and a Jquery plug-in,
-[Jquery-Appear](http://code.google.com/p/jquery-appear/) for the automatic
+As for 3rd party tools I used for this project, I am using [jQuery](http://jquery.com/),
+[HTML 5 Boilerplate](http://html5boilerplate.com/), and a jQuery plug-in,
+[jQuery-Appear](http://code.google.com/p/jquery-appear/) for the automatic
 loading of posts as one scrolls through the index.
 
 As for the front end, I wanted to reflect my backend ideas about simplicity in
