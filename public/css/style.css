@@ -188,8 +188,11 @@ header #navigation .button:hover {
   word-spacing: 0.107em;
   line-height: 1.4;
 }  
-.post p {
+.post p, h3, ul, ol {
   margin-bottom: 20px;
+}
+.post h3 {
+  font-size: 120%;
 }
 #navigation a, .post h2 a {
   text-decoration: none;
