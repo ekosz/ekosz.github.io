@@ -141,7 +141,7 @@ header #navigation .button:hover {
   -moz-transition: background .5s ease-out;
   transition: background .5s ease-out;
 }
-#fadeout-top, #fadeout-bottom {
+#fadeout-top {
   z-index: 50;
   position: fixed;
   left: 0; right: 0;
@@ -151,11 +151,6 @@ header #navigation .button:hover {
   top: 0;
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 255)), to(rgba(255, 255, 255, 0)));
   background: -moz-linear-gradient(top, rgba(255, 255, 255, 255), rgba(255, 255, 255, 0));
-}
-#fadeout-bottom {
-  bottom: 0;
-  background: -webkit-gradient(linear, left bottom, left top, from(rgba(255, 255, 255, 255)), to(rgba(255, 255, 255, 0)));
-  background: -moz-linear-gradient(bottom, rgba(255, 255, 255, 255), rgba(255, 255, 255, 0));
 }
 #main #title {
   text-align: center;
@@ -233,6 +228,7 @@ header #navigation .button:hover {
 footer {
   position: fixed;
   bottom: 5px;
+  left: 10px;
   z-index: 100;
 }
 .nav-last {
@@ -422,13 +418,11 @@ pre .tex .formula {
 }
 
 @media screen and (max-device-width: 480px) {
-  #fadeout-bottom { display: none; visibility: hidden; }
   footer { position: relative; }
 
   /* html { -webkit-text-size-adjust:none; -ms-text-size-adjust:none; } */
 }
 @media screen and (min-device-width: 481px) and (max-device-width: 1024px) {
-  #fadeout-bottom { display: none; visibility: hidden; }
   footer { position: relative; }
 }
 
