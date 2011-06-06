@@ -4,60 +4,62 @@ require 'kramdown'
 require 'builder'
 require 'time'
 require 'open-uri'
+require 'slim'
+
+class Post
+  attr_accessor :title, :body, :url
+  def initialize(title, body, url)
+    @title, @body, @url = title, body, url
+  end
+end
 
 not_found do
-  full_html('<div id="missing">404 Not Found</div>')
+  slim :"404"
 end
 
 error do
-  full_html('<div id="error">Fuck, you broke it!</div>')
+  slim :"500"
 end
 
-### Real Calls ###
+### Routes ###
 
 get '/' do
   redirect params[:_escaped_fragment_] if params[:_escaped_fragment_]
-  full_html(index_content)
+  @posts, @ending = next_posts(nil, 3)
+  slim :index
 end
 
-get '/about' do
-  full_html(about_content)
+get %r{(/ajax)?/about/?} do |ajax|
+  @title = "- About"
+  ajax ? slim(:about, :layout=>false) : slim(:about)
 end
 
-get '/history' do
-  full_html(history_content)
+get %r{(/ajax)?/history/?} do |ajax|
+  @title = "- History"
+  @history = gen_post_arry.map {|m| [gen_post_title(m), gen_post_url(m)] }
+  ajax ? slim(:history, :layout=>false) : slim(:history)
 end
 
-get '/posts/:month/:day/:year/:post' do |month, day, year, post|
-  full_html(from_markdown( [month, day, year, post].join('-') ))
+get %r{(/ajax)?/posts/(\d+)/(\d+)/(\d+)/([^/]+)/?} do |ajax, month, day, year, post|
+  @post = from_markdown( [month, day, year, post].join('-') )
+  @title = "- "+@post.title
+  ajax ? slim(:post, :layout=>false) : slim(:post)
 end
 
-get '/from/:month/:day/:year/' do |month, day, year|
-  full_html( next_post([month,day,year].join('-'), 3) )
+get %r{(/ajax)?/from/(\d+)/(\d+)/(\d+)/?} do |ajax, month, day, year|
+  @title = "- Continued"
+  @posts, @ending = next_posts([month,day,year].join('-'), 3)
+  ajax ? slim(:from, :layout=>false) : slim(:from)
 end
 
 ### AJAX CALLS ###
 
 get '/ajax//' do
-  index_content
+  @posts, @ending = next_posts(nil, 3)
+  slim :index, :layout => false
 end
 
-get '/ajax/about' do
-  about_content
-end
-
-get '/ajax/history' do
-  history_content
-end
-
-get '/ajax/posts/:month/:day/:year/:post' do |month, day, year, post|
-  from_markdown( [month, day, year, post].join('-') )
-end
-
-get '/ajax/from/:month/:day/:year' do |month, day, year|
-  next_post([month,day,year].join('-'))
-end
-
+### RSS ###
 get '/rss.xml' do
   builder do |xml|
     xml.instruct! :xml, :version => '1.0'
@@ -84,30 +86,6 @@ end
 
 private
 
-### SPECAIL PAGES ###
-def index_content
-  "<div id='title'>blog name here!</div>\n"+next_post(nil, 3)
-end
-
-def about_content
-  from_markdown('about', './')
-end
-
-def history_content
-  to_return = []
-  to_return << '<div id="history">'
-  post_array = gen_post_arry
-
-  post_array.each do |post|
-    to_return << "<div class='post'><h2>
-    <a href='#{gen_post_url(post)}'> #{gen_post_title(post)}
-    </a></h2></div>"
-  end
-  to_return << '</div>'
-
-  to_return.join("\n")
-end
-
 ### FUNCTIONS ###
 def gen_post_url(post)
   p=post.split('-')
@@ -132,28 +110,16 @@ def gen_post_arry
   end.reverse
 end
 
-def from_markdown(thing, path=nil)
-  path = path ? path+thing+".md" : 'posts/'+thing+'.md'
+def from_markdown(thing)
+  path = 'posts/'+thing+'.md'
   begin
-    '<div class="post">'+Kramdown::Document.new(File.read(path)).to_html+'</div>'
+    Post.new(gen_post_title(thing), Kramdown::Document.new(File.read(path)).to_html, gen_post_url(thing))
   rescue
     raise Sinatra::NotFound
   end
 end
 
-def top_half
-  @tophalf ||=  File.read(File.join('public', 'index.html')).split(/<div id="main" role="main">/)[0]+'<div id="main" role="main">'
-end
-
-def bottom_half
-  @bottomhalf ||= File.read(File.join('public', 'index.html')).split(/<div id="main" role="main">/)[1]
-end
-
-def full_html(snippet)
-  top_half+snippet+bottom_half
-end
-
-def next_post(id, num=1)
+def next_posts(id, num=1)
   post_array = gen_post_arry
   to_return = []
   if id.nil?
@@ -173,5 +139,5 @@ def next_post(id, num=1)
 
   ending = post_array[-1] == id ? '<div id="theEnd">That\'s all folks!</div>' : "<div id='next'><a href='/from/#{id.split('-')[0..2].join('/')}'>Next >></a></div>"
 
-  to_return.join("\n")+ending
+  [to_return, ending]
 end

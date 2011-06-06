@@ -1,0 +1,63 @@
+doctype html
+/[if lt IE 7 ] 
+  | <html class="no-js ie6" lang="en">
+/[if IE 7 ]    
+  | <html class="no-js ie7" lang="en">
+/[if IE 8 ]    
+  | <html class="no-js ie8" lang="en">
+/[if (gte IE 9)|!(IE)]
+  | <!--> <html class="no-js" lang="en"> <!--
+head
+  meta charset="utf-8"
+  meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"
+
+  title = "Eric Koslow's Blog About Programming and Stuff "+(@title||"")
+  meta name="description" content="A blog about programming and stuff"
+  meta name="author" content="Eric Koslow"
+
+  meta name="viewport" content="width=device-width, initial-scale=1.0"
+  link rel="shortcut icon" href="/favicon.ico"
+  link rel="apple-touch-icon" href="/apple-touch-icon.png"
+
+  link rel="alternate" type="application/rss+xml" title="RSS" href="/rss.xml"
+
+  link  href="http://fonts.googleapis.com/css?family=Pacifico:regular" rel="stylesheet" type="text/css"
+  link  href="http://fonts.googleapis.com/css?family=Kristi:regular" rel="stylesheet" type="text/css"
+  link rel="stylesheet" href="/css/style.css?v=2"
+  script src="/js/libs/modernizr-1.7.min.js"
+body
+  #container
+    #fadeout-top
+    header
+      #navigation
+        .button
+          a href="/" Main
+        .button
+          a href="/about" About
+        .button.nav-last
+          a href="/history" History
+    div id="main" role="main"
+      == yield
+    #fadeout-bottom
+  footer
+    a href="http://twitter.com/ekoslow" Eric Koslow
+
+
+  script src="//ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.js"
+  javascript:
+    window.jQuery || document.write("<script src='/js/libs/jquery-1.5.1.min.js'>\x3C/script>")
+
+
+  script src="/js/plugins.js"
+  script src="/js/script.js"
+
+  /[if lt IE 7 ]
+    script src="js/libs/dd_belatedpng.js"
+    javascript:
+      DD_belatedPNG.fix("img, .png_bg");
+
+  javascript:
+    var _gaq=[["_setAccount","UA-23319443-1"],["_trackPageview"]]; // Change UA-XXXXX-X to be your site's ID 
+    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
+    g.src=("https:"==location.protocol?"//ssl":"//www")+".google-analytics.com/ga.js";
+    s.parentNode.insertBefore(g,s)}(document,"script"));

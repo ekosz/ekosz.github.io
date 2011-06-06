@@ -1,6 +1,3 @@
-[Sinatra Vs. Rails](/posts/05/13/11/sinatra-vs-rails)
--------------------
-
 OR
 
 Why the code for this blog looks like crap
