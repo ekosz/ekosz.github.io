@@ -9,7 +9,6 @@ $(function() {
   };
   changeLocation = function() {
     var l = location.hash.split('!/')[1] || '/';
-    console.log(l);
     $("#main").fadeOut(function() {
       // Add the loading splash
       $("body").prepend(
@@ -20,11 +19,10 @@ $(function() {
       var self = this;
       $(self).empty(); // Remove #main content
       $.get('ajax/'+l, function(data) { //Grab AJAX content
-        $(self).html(data); //Set #main content
-        rebind();
         _gaq.push(['_trackPageview', '/#!/'+l]); //Track Ajax Pages in Google analytics
-        $("#loading").remove(); // Remove the loading splash
-        $(self).fadeIn(); // Apear the new content
+        update(data);
+      }).error(function(data) { 
+        update(data.responseText);
       });
     }); 
   }
@@ -55,6 +53,12 @@ $(function() {
     }
     bindNext();
     $('pre code').each(function(i, e) {hljs.highlightBlock(e, '    ')});
+  }
+  update = function(html) {
+    $("#main").html(html); //Set #main content
+    rebind();
+    $("#loading").remove(); // Remove the loading splash
+    $("#main").fadeIn(); // Apear the new content
   }
 
 

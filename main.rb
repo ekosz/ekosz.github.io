@@ -14,49 +14,48 @@ class Post
 end
 
 not_found do
-  slim :"404"
+  request.xhr? ? slim(:"404", :layout=>false) : slim(:"404")
 end
 
 error do
-  slim :"500"
+  request.xhr? ? slim(:"500", :layout=>false) : slim(:"500")
 end
 
 ### Routes ###
 
-get '/' do
+# Index Page, lists the last three blog posts
+get %r{^(/ajax/)?/$} do |ajax|
   redirect params[:_escaped_fragment_] if params[:_escaped_fragment_]
   @posts, @ending = next_posts(nil, 3)
-  slim :index
+  ajax ? slim(:index, :layout => false) : slim(:index)
 end
 
-get %r{(/ajax)?/about/?} do |ajax|
+# About Page, explains what the blog is about
+get %r{^(/ajax)?/about/?$} do |ajax|
   @title = "- About"
   ajax ? slim(:about, :layout=>false) : slim(:about)
 end
 
-get %r{(/ajax)?/history/?} do |ajax|
+# History Page, lists all of the blog posts with links
+get %r{^(/ajax)?/history/?$} do |ajax|
   @title = "- History"
-  @history = gen_post_arry.map {|m| [gen_post_title(m), gen_post_url(m)] }
+  @history = post_arry.map {|m| [post_title(m), post_url(m)] }
   ajax ? slim(:history, :layout=>false) : slim(:history)
 end
 
-get %r{(/ajax)?/posts/(\d+)/(\d+)/(\d+)/([^/]+)/?} do |ajax, month, day, year, post|
+# Post Page, displays a single blog post
+get %r{^(/ajax)?/posts/(\d+)/(\d+)/(\d+)/([^/]+)/?$} do |ajax, month, day, year, post|
   @post = from_markdown( [month, day, year, post].join('-') )
   @title = "- "+@post.title
   ajax ? slim(:post, :layout=>false) : slim(:post)
 end
 
-get %r{(/ajax)?/from/(\d+)/(\d+)/(\d+)/?} do |ajax, month, day, year|
+# Pagination, displays the next blog posts, from a certain date
+get %r{^(/ajax)?/from/(\d+)/(\d+)/(\d+)/?$} do |ajax, month, day, year|
+  ajax ? num = 1 : num = 3
   @title = "- Continued"
-  @posts, @ending = next_posts([month,day,year].join('-'), 3)
+  @posts, @ending = next_posts([month,day,year].join('-'), num)
   ajax ? slim(:from, :layout=>false) : slim(:from)
-end
-
-### AJAX CALLS ###
-
-get '/ajax//' do
-  @posts, @ending = next_posts(nil, 3)
-  slim :index, :layout => false
 end
 
 ### RSS ###
@@ -69,13 +68,13 @@ get '/rss.xml' do
         xml.description "A blog about stuff."
         xml.link "http://blognamehere.com"
 
-        gen_post_arry.each do |post|
+        post_arry.each do |post|
           xml.item do
-            xml.title gen_post_title(post)
-            xml.link "http://blognamehere.com#{gen_post_url(post)}"
+            xml.title post_title(post)
+            xml.link "http://blognamehere.com#{post_url(post)}"
             xml.description from_markdown(post)
-            xml.pubDate Time.parse(gen_post_date(post)).rfc822()
-            xml.guid "http://blognamehere.com#{gen_post_url(post)}"
+            xml.pubDate Time.parse(post_date(post)).rfc822()
+            xml.guid "http://blognamehere.com#{post_url(post)}"
           end
         end
       end
@@ -87,22 +86,22 @@ end
 private
 
 ### FUNCTIONS ###
-def gen_post_url(post)
+def post_url(post)
   p=post.split('-')
   '/posts/'+p[0..2].join('/')+'/'+p[3..-1].join('-')
 end
 
-def gen_post_title(post)
+def post_title(post)
   post.split('-')[3..-1].join(' ')
 end
 
-def gen_post_date(post)
+def post_date(post)
   p = post.split('-')
   #Year, Month, Day
   [p[2], p[0], p[1]].join('/') 
 end
 
-def gen_post_arry
+def post_arry
   Dir.glob('posts/*').map {|m| m =~ /\/([^\/]+)\.md$/; $1}.sort_by do |a|
     a = a.split('-')
     # Year, Month, Day
@@ -113,14 +112,18 @@ end
 def from_markdown(thing)
   path = 'posts/'+thing+'.md'
   begin
-    Post.new(gen_post_title(thing), Kramdown::Document.new(File.read(path)).to_html, gen_post_url(thing))
+    Post.new(
+      post_title(thing), 
+      Kramdown::Document.new(File.read(path)).to_html, 
+      post_url(thing)
+    )
   rescue
     raise Sinatra::NotFound
   end
 end
 
 def next_posts(id, num=1)
-  post_array = gen_post_arry
+  post_array = post_arry
   to_return = []
   if id.nil?
     id = post_array[0]
@@ -128,7 +131,8 @@ def next_posts(id, num=1)
     num -= 1
   else
     post_array << id
-    post_array = post_array.sort_by {|s| s=s.split('-'); [s[2],s[0],s[1],s.size]}.reverse
+    post_array = 
+      post_array.sort_by {|s| s=s.split('-'); [s[2],s[0],s[1],s.size]}.reverse
   end
 
   num.times do
