@@ -1,4 +1,3 @@
-.post
-  h2
-    =@post.title
-  ==@post.body
+div class="post" itemscope=true itemtype="http://www.schema.org/BlogPosting"
+  h2 itemprop="name" = @post.title
+  div itemprop="articleBody" == @post.body

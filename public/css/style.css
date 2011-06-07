@@ -115,8 +115,8 @@ header {
   background-image:         linear-gradient(top, white, #999999);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='white', EndColorStr='#999999'); /* IE6–IE9 */
 }
-header #navigation { width: 515px; margin: auto; }
-header #navigation .button {
+header nav { width: 515px; margin: auto; }
+header nav .button {
   width: 166px;
   height: 50px;
   float: left;
@@ -130,12 +130,13 @@ header #navigation .button {
   -moz-transition: background .5s ease-out;
   transition: background .5s ease-out;
 }
-header #navigation .button a {
+header nav .button a {
   display: block;
   width: 100%;
   height: 100%;
+  color: #444;
 }
-header #navigation .button:hover {
+header nav .button:hover {
   background: rgba(173, 216, 230, .25);
   -webkit-transition: background .5s ease-out;
   -moz-transition: background .5s ease-out;
@@ -189,7 +190,7 @@ header #navigation .button:hover {
 .post h3 {
   font-size: 120%;
 }
-#navigation a, .post h2 a {
+nav a, .post h2 a {
   text-decoration: none;
   color: inherit;
 }
