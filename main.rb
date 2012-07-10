@@ -66,15 +66,15 @@ get '/rss.xml' do
       xml.channel do
         xml.title "Blog Name Here"
         xml.description "A blog about stuff."
-        xml.link "http://blognamehere.com"
+        xml.link "http://erickoslow-blog.heroku.com/"
 
         post_arry.each do |post|
           xml.item do
             xml.title post_title(post)
-            xml.link "http://blognamehere.com#{post_url(post)}"
-            xml.description from_markdown(post)
+            xml.link "http://erickoslow-blog.heroku.com#{post_url(post)}"
+            xml.description from_markdown(post).body
             xml.pubDate Time.parse(post_date(post)).rfc822()
-            xml.guid "http://blognamehere.com#{post_url(post)}"
+            xml.guid "http://erickoslow-blog.heroku.com#{post_url(post)}"
           end
         end
       end
