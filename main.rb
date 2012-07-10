@@ -27,27 +27,27 @@ end
 get %r{^(/ajax/)?/$} do |ajax|
   redirect params[:_escaped_fragment_] if params[:_escaped_fragment_]
   @posts, @ending = next_posts(nil, 3)
-  ajax ? slim(:index, :layout => false) : slim(:index)
+  slim(:index, :layout => !ajax)
 end
 
 # About Page, explains what the blog is about
 get %r{^(/ajax)?/about/?$} do |ajax|
   @title = "- About"
-  ajax ? slim(:about, :layout=>false) : slim(:about)
+  slim(:about, :layout=> !ajax)
 end
 
 # History Page, lists all of the blog posts with links
 get %r{^(/ajax)?/history/?$} do |ajax|
   @title = "- History"
   @history = post_arry.map {|m| [post_title(m), post_url(m)] }
-  ajax ? slim(:history, :layout=>false) : slim(:history)
+  slim(:history, :layout=> !ajax)
 end
 
 # Post Page, displays a single blog post
 get %r{^(/ajax)?/posts/(\d+)/(\d+)/(\d+)/([^/]+)/?$} do |ajax, month, day, year, post|
   @post = from_markdown( [month, day, year, post].join('-') )
   @title = "- "+@post.title
-  ajax ? slim(:post, :layout=>false) : slim(:post)
+  slim(:post, :layout=> !ajax)
 end
 
 # Pagination, displays the next blog posts, from a certain date
@@ -55,7 +55,7 @@ get %r{^(/ajax)?/from/(\d+)/(\d+)/(\d+)/?$} do |ajax, month, day, year|
   ajax ? num = 1 : num = 3
   @title = "- Continued"
   @posts, @ending = next_posts([month,day,year].join('-'), num)
-  ajax ? slim(:from, :layout=>false) : slim(:from)
+  slim(:from, :layout=> !ajax)
 end
 
 ### RSS ###
