@@ -9,7 +9,7 @@ during the opponents turn.  Hence its name "Minimax".
 There are two parts to the MiniMax algorithm: the evaluator and the game tree
 logic.  
 
-## Evaluator
+### Evaluator
 
 The evaluator is custom to the each implantation of Minimax.  Its job
 is to take a game state, and rank it.  For TicTacToe its job is simple.
@@ -22,7 +22,7 @@ The numbers aren't important, as long as they are in ascending order of what
 you want to happen. Each game will have their own evaluator. The more complex
 the game, the more complex the evaluator will have to be.
 
-# The Game Tree
+### The Game Tree
 
 The other part of the Minimax algorithm is the game tree logic, which is the
 same for all of its implementations.

@@ -64,7 +64,7 @@ get '/rss.xml' do
     xml.instruct! :xml, :version => '1.0'
     xml.rss :version => "2.0" do
       xml.channel do
-        xml.title "Blog Name Here"
+        xml.title "Journey to Masterclass"
         xml.description "A blog about stuff."
         xml.link "http://erickoslow-blog.heroku.com/"
 
