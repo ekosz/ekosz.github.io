@@ -93,19 +93,13 @@ a:hover { color: #036; }
   background-repeat: no-repeat;
 }  
 #container {
-  width: 1000px;
+  max-width: 1000px;
   margin: auto;
-  padding: 100px 0px 5px 10px;
 }
 header {
-  position: fixed;
-  top: 25px;
-  left: 40px;
-  right: 40px;
+  margin: 10px;
   border: 1px solid #ccc;
   border-radius: 10px;
-  height: 50px;
-  min-width: 515px;
   z-index: 100;
   background-image: -webkit-gradient(linear, left top, left bottom, from(white), to(#999999)); /* Saf4+, Chrome */
   background-image: -webkit-linear-gradient(top, white, #999999); /* Chrome 10+, Saf5.1+ */
@@ -115,14 +109,13 @@ header {
   background-image:         linear-gradient(top, white, #999999);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='white', EndColorStr='#999999'); /* IE6–IE9 */
 }
-header nav { width: 515px; margin: auto; }
 header nav .button {
-  width: 166px;
   height: 50px;
-  float: left;
+  float: none;
   font-weight: bold;
   font-size: 2em;
-  border-left: 1px solid #ccc;
+  border-left: none;
+  border-top: 1px solid #ccc;
   text-align: center;
   line-height: 50px;
   cursor: pointer;
@@ -143,6 +136,7 @@ header nav .button:hover {
   transition: background .5s ease-out;
 }
 #fadeout-top {
+  display: none;
   z-index: 50;
   position: fixed;
   left: 0; right: 0;
@@ -156,33 +150,34 @@ header nav .button:hover {
 #main #title {
   text-align: center;
   font-family: 'Pacifico', serif;
-  font-size: 64px;
+  font-size: 50px;
   font-style: normal;
   font-weight: 400;
   text-shadow: 6px 6px 6px #CCC;
   text-transform: capitalize;
   letter-spacing: 0.173em;
   word-spacing: 0.128em;
-  line-height: 1;
+  line-height: 1.5;
   margin: 10px 0 20px 0;
 }
 .post {
   margin-top: 40px;
   margin-bottom: 10px;
   font-family: 'Helvetica Nue', serif;
-  font-size: 28px;
+  font-size: 20px;
   font-weight: 400;
   line-height: 1.27;
 }
 .post h2 {
   font-family: 'Kristi', serif;
-  font-size: 70px;
+  font-size: 50px;
   font-style: normal;
   font-weight: 400;
   text-transform: capitalize;
   letter-spacing: 0.061em;
   word-spacing: 0.107em;
-  line-height: 1.4;
+  line-height: 1;
+  margin-bottom: 10px;
 }  
 .post p, h3, ul, ol {
   margin-bottom: 20px;
@@ -226,12 +221,6 @@ nav a, .post h2 a {
   text-align: center;
   font-size: 2em;
 }  
-footer {
-  position: fixed;
-  bottom: 5px;
-  left: 10px;
-  z-index: 100;
-}
 .nav-last {
   border-right: 1px solid #ccc;
 }
@@ -271,7 +260,7 @@ pre code {
   display: block; padding: 0.5em;
   color: #000;
   background: #f8f8ff;
-  font-size: 24px;
+  font-size: 16px;
   border: none;
 }
 
@@ -410,22 +399,67 @@ pre .tex .formula {
 .clearfix { zoom: 1; }
 
 
-@media all and (orientation:portrait) {
 
+/* ==|== media queries ======================================================
+   EXAMPLE Media Query for Responsive Design.
+   This example overrides the primary ('mobile first') styles
+   Modify as content requires.
+   ========================================================================== */
+
+@media only screen and (min-width: 35em) {
+    /* Style adjustments for viewports that meet the condition */
+  #container { 
+    font-size: 100%;
+    padding: 100px 0px 5px 10px;
+  }
+
+  header nav { width: 515px; margin: auto; }
+
+  header {
+    margin: 0;
+    position: fixed;
+    top: 25px;
+    left: 40px;
+    right: 40px;
+    min-width: 515px;
+    height: 50px;
+  }
+  header nav .button {
+    width: 166px;
+    float: left;
+    border-left: 1px solid #ccc;
+    border-top: none;
+  }
+
+  #fadeout-top { display: block; }
+
+  #main #title { 
+    font-size: 64px;
+    line-height: 1;
+  }
+
+  .post {
+    font-size: 28px;
+  }
+
+  .post h2 {
+    font-size: 70px;
+    line-height: 1.4;
+    margin-bottom: 0;
+  }  
+
+  pre code {
+    font-size: 24px;
+  }
+
+  footer {
+    position: fixed;
+    bottom: 5px;
+    left: 10px;
+    z-index: 100;
+  }
 }
 
-@media all and (orientation:landscape) {
-
-}
-
-@media screen and (max-device-width: 480px) {
-  footer { position: relative; }
-
-  /* html { -webkit-text-size-adjust:none; -ms-text-size-adjust:none; } */
-}
-@media screen and (min-device-width: 481px) and (max-device-width: 1024px) {
-  footer { position: relative; }
-}
 
 
 
