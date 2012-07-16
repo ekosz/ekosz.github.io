@@ -15,6 +15,8 @@ class Post
     @title = blob.split('-')[3..-1].join(' ')
     @date = Time.new(p[2], p[0], p[1])
     @body = Kramdown::Document.new(File.read(path)).to_html
+  rescue
+    raise Sinatra::NotFound
   end
 end
 
@@ -117,11 +119,7 @@ end
 def from_markdown(thing)
   path = 'posts/'+thing+'.md'
   begin
-    Post.new(
-      post_title(thing), 
-      Kramdown::Document.new(File.read(path)).to_html, 
-      post_url(thing)
-    )
+    Post.new( thing )
   rescue
     raise Sinatra::NotFound
   end

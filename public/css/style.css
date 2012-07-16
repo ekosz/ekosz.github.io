@@ -559,11 +559,11 @@ nav a, .post h2 a {
   text-align: center;
 }
 #next {
-  text-align: center;
   font-weight:bold;
   font-size: 1.333em;
 }
 #next a {
+  color: inherit;
   text-decoration: none;
 }
 #theEnd {

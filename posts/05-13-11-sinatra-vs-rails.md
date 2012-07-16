@@ -1,8 +1,3 @@
-OR
-
-Why the code for this blog looks like crap
-------------------------------------------
-
 When first getting into Ruby, I thought Rails was coolest thing since dynamic
 variables.  It was pure magic.  Using a complicated mix of meta-programming and
 Ruby Ninjaing in the background, Rails allows the average developer to do really
