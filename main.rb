@@ -7,9 +7,14 @@ require 'open-uri'
 require 'slim'
 
 class Post
-  attr_accessor :title, :body, :url
-  def initialize(title, body, url)
-    @title, @body, @url = title, body, url
+  attr_accessor :title, :body, :url, :date
+  def initialize(blob)
+    path = "posts/#{blob}.md"
+    p = blob.split('-')
+    @url = '/posts/'+p[0..2].join('/')+'/'+p[3..-1].join('-')
+    @title = blob.split('-')[3..-1].join(' ')
+    @date = Time.new(p[2], p[0], p[1])
+    @body = Kramdown::Document.new(File.read(path)).to_html
   end
 end
 
@@ -45,7 +50,7 @@ end
 
 # Post Page, displays a single blog post
 get %r{^(/ajax)?/posts/(\d+)/(\d+)/(\d+)/([^/]+)/?$} do |ajax, month, day, year, post|
-  @post = from_markdown( [month, day, year, post].join('-') )
+  @post = Post.new( [month, day, year, post].join('-') )
   @title = "- "+@post.title
   slim(:post, :layout=> !ajax)
 end

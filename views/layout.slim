@@ -16,13 +16,9 @@ head
   meta name="author" content="Eric Koslow"
 
   meta name="viewport" content="width=device-width, initial-scale=1.0"
-  link rel="shortcut icon" href="/favicon.ico"
-  link rel="apple-touch-icon" href="/apple-touch-icon.png"
 
   link rel="alternate" type="application/rss+xml" title="RSS" href="/rss.xml"
 
-  link  href="http://fonts.googleapis.com/css?family=Pacifico:regular" rel="stylesheet" type="text/css"
-  link  href="http://fonts.googleapis.com/css?family=Kristi:regular" rel="stylesheet" type="text/css"
   link rel="stylesheet" href="/css/style.css?v=2"
   script src="/js/libs/modernizr-1.7.min.js"
 body itemscope=true itemtype="http://schema.org/Blog"
@@ -39,7 +35,8 @@ body itemscope=true itemtype="http://schema.org/Blog"
     div id="main" role="main"
       == yield
   footer
-    a href="http://twitter.com/ekosz1" Eric Koslow
+    small
+      a href="http://twitter.com/ekosz1" Eric Koslow
 
 
   script src="//ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.js"
@@ -47,6 +44,7 @@ body itemscope=true itemtype="http://schema.org/Blog"
     window.jQuery || document.write("<script src='/js/libs/jquery-1.5.1.min.js'>\x3C/script>")
 
 
+  script src="/js/libs/jquery.timeago.js"
   script src="/js/plugins.js"
   script src="/js/script.js"
 

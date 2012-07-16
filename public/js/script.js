@@ -3,6 +3,7 @@
 */
 
 $(function() {
+  jQuery("time.timeago").timeago();
   // Creating custom :internal selector
   $.expr[':'].internal = function(obj){
     return !obj.href.match(/^mailto\:/) && (obj.hostname === location.hostname);
