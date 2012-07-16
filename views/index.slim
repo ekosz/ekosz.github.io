@@ -3,5 +3,6 @@ div id="title" itemprop="name" journey to masterclass
   div(class="post" itemscope=true itemtype="http://www.schema.org/BlogPosting")
     h2 itemprop="name"
       a href==post.url itemprop="url" = post.title
+    time.timeago datetime=post.date.iso8601 = post.date.strftime("%B %d, %Y")
     div itemprop="articleBody" ==post.body
 ==@ending

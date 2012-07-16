@@ -57,6 +57,7 @@ $(function() {
   }
   update = function(html) {
     $("#main").html(html); //Set #main content
+    jQuery("time.timeago").timeago();
     rebind();
     $("#loading").remove(); // Remove the loading splash
     $("#main").fadeIn(); // Apear the new content

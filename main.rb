@@ -13,7 +13,7 @@ class Post
     p = blob.split('-')
     @url = '/posts/'+p[0..2].join('/')+'/'+p[3..-1].join('-')
     @title = blob.split('-')[3..-1].join(' ')
-    @date = Time.new(p[2], p[0], p[1])
+    @date = Time.utc(p[2], p[0], p[1])
     @body = Kramdown::Document.new(File.read(path)).to_html
   rescue
     raise Sinatra::NotFound
@@ -31,7 +31,13 @@ end
 ### Routes ###
 
 # Index Page, lists the last three blog posts
-get %r{^(/ajax/)?/$} do |ajax|
+get %r{^(/ajax/)?/?$} do |ajax|
+  redirect params[:_escaped_fragment_] if params[:_escaped_fragment_]
+  @posts, @ending = next_posts(nil, 3)
+  slim(:index, :layout => !ajax)
+end
+
+get %r{^/ajax//$} do |ajax|
   redirect params[:_escaped_fragment_] if params[:_escaped_fragment_]
   @posts, @ending = next_posts(nil, 3)
   slim(:index, :layout => !ajax)
@@ -118,11 +124,7 @@ end
 
 def from_markdown(thing)
   path = 'posts/'+thing+'.md'
-  begin
-    Post.new( thing )
-  rescue
-    raise Sinatra::NotFound
-  end
+  Post.new( thing )
 end
 
 def next_posts(id, num=1)
