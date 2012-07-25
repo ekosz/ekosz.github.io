@@ -13,7 +13,7 @@ class Post
     p = blob.split('-')
     @url = '/posts/'+p[0..2].join('/')+'/'+p[3..-1].join('-')
     @title = blob.split('-')[3..-1].join(' ')
-    @date = Time.utc(p[2], p[0], p[1])
+    @date = Time.utc(p[2], p[0], p[1], 12)
     @body = Kramdown::Document.new(File.read(path)).to_html
   rescue
     raise Sinatra::NotFound
