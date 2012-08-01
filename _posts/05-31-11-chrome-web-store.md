@@ -1,3 +1,7 @@
+---
+layout: post
+title: chrome web store
+---
 Last week I launched [Japanese Vocab Tutor](https://chrome.google.com/webstore/detail/ldemblkooloonmjfiainhkhmmlelfnfb) mostly to be able to say I published an app.  The actual application took about two days to create and style, and is a pretty basic flash card application with some nice features.  The real problem happened on the third day, hooking it up to the Google Licence API.  This was a lot harder then I thought it would be.
 
 I used three tools to pull it off:

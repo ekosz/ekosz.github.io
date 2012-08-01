@@ -1,3 +1,7 @@
+---
+layout: post
+title: simple tcp server in elixir
+---
 One of my favorite functional languages is Erlang.  First created in 1986,
 Erlang is a highly concurrent language with high fault tolerance.  It a great
 tool to have for any programmer.  That being said, Erlang definitely shows its

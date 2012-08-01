@@ -1,3 +1,7 @@
+---
+layout: post
+title: elixir make files
+---
 One of the common practices in Elixir is to use Makefiles and the Make compiling 
 utility. Make was first released in 1977 and can be found installed on almost
 all \*nix systems. Make uses a series of commands to compile projects.  These

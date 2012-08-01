@@ -1,3 +1,7 @@
+---
+layout: post
+title: static code analysis
+---
 On the way to being a great programmer, everyone hits the same roadblock.  Code
 Smells.  One of the tools I have started using to help me recognize and locate
 code smells is "Static Code Analysis".

@@ -1,3 +1,7 @@
+---
+layout: post
+title: clojure first impressions
+---
 First of all, a little background about my experience with Clojure before now.
 Though I have never written in Clojure before, I have programmed functionally
 using Erlang, and have written my own Lisp-like language. That gave me the

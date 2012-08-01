@@ -1,3 +1,7 @@
+---
+layout: post
+title: code katas
+---
 When I was a kid I remember taking a karate class for gym.  During the class
 we were taught to perform "katas".  Katas were a series of moves that would be
 performed after one another in a set sequence. Almost like a dance. Right

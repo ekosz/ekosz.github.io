@@ -1,3 +1,7 @@
+---
+layout: post
+title: testing elixir
+---
 When learning a new linage, one of the first steps one needs to take is
 learning its testing frameworks.  Elixir being a relatively new language, it
 only has one ExUnit.  In this blog post, I'll walk you through writing your

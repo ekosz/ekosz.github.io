@@ -1,3 +1,7 @@
+---
+layout: post
+title: tracking down slow code
+---
 Sometimes code runs slowly.  A method call takes longer than you expect, and
 your application starts becoming unresponsive.  When this happens, having the
 know-how and the proper tools becomes invaluable.

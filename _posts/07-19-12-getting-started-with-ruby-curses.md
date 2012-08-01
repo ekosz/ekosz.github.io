@@ -1,3 +1,7 @@
+---
+layout: post
+title: getting started with ruby curses
+---
 This week I was playing around with creating a complex terminal game.
 I immediately though about Curses.
 

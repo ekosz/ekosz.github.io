@@ -1,3 +1,7 @@
+---
+layout: post
+title: minimax tic tac toe
+---
 I already implemented TicTacToe using heuristics, today I was given the task to
 reimplement my TicTacToe AI using the MiniMax algorithm.
 

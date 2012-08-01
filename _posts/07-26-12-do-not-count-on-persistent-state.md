@@ -1,3 +1,7 @@
+---
+layout: post
+title: do not count on persistent state
+---
 Today I finished moving my Tic Tac Toe program to the web. Before the game ran
 on a loop, and a single game object was constantly fed new moves.  You can't do
 this with web based UI. Every web request starts with a blank slate.  There is

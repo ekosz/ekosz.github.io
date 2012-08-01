@@ -1,3 +1,7 @@
+---
+layout: post
+title: outdated in 60 secs
+---
 In my last post I talked about Make and Makefiles in Elixir projects.  It turns
 out that that post is already outdated information.
 

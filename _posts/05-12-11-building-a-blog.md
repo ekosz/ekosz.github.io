@@ -1,3 +1,7 @@
+---
+layout: post
+title: building a blog
+---
 There comes a time in every up and coming web developer's life that he realizes
 that he/she needs a blog.  And at that time they know that there are plenty of
 off the shelf blogging platforms, but in their heart of hearts they know they must build

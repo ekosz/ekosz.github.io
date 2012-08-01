@@ -1,3 +1,7 @@
+---
+layout: post
+title: refactoring
+---
 Programs rot. Without tender love and care, they become unmaintainable.  They
 only way to fight this process is through continuous refactoring.
 

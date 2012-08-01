@@ -1,3 +1,7 @@
+---
+layout: post
+title: the danger of too many classes
+---
 In my last post I talked about refactoring its advantages.  But there is
 a danger of refactoring too much.  By following all the right rules, even while
 supposedly doing the right thing, your code may become a mess.
