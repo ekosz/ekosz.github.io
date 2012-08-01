@@ -1,0 +1,2 @@
+exclude: ['README.md', 'Gemfile.lock', 'Gemfile']
+paginate: 3

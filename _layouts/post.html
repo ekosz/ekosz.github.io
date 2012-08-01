@@ -1,0 +1,10 @@
+---
+layout: default
+---
+<div class="post" itemscope=true itemtype="http://www.schema.org/BlogPosting">
+  <h2 itemprop="name">{{page.title}}</h2>
+  <time class="timeago" datetime="{{page.date | date_to_xmlschema}}">
+  {{page.date | date_to_string}}
+  </time>
+  <div itemprop="articleBody">{{content}}</div>
+</div>
