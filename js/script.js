@@ -3,6 +3,7 @@
 */
 
 $(function() {
+  jQuery.timeago.settings.strings.hours = "not so long"
   jQuery("time.timeago").timeago();
 
   var bindNext = function() {
