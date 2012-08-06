@@ -1,6 +1,6 @@
 ---
 layout: post
-title: otp: gen server
+title: "OTP: gen server"
 ---
 This will be the first of many posts coming up on Erlang's OTP library. If
 you have never heard of OTP, let me explain.  When Erlang was first introduced
