@@ -15,13 +15,13 @@ The first thing needed was to add pagination to the \_config.yml file.
 
 And then add the paginate link to the bottom of the index page.
 
-    {% raw %}
-    {% if paginator.next_page %}
+    {{ "{% raw " }}%}
+    {{ "{% if paginator.next_page " }}%}
     <div id='next'>
       <a href="/page{{paginator.next_page}}">Next >></a>
     </div>
-    {% endif %}
-    {% endraw %}
+    {{ "{% endif " }}%}
+    {{ "{% endraw " }}%}
 
 Now to add some javascript that would replace the next link with the posts from
 the next page when the user scrolled to it.
