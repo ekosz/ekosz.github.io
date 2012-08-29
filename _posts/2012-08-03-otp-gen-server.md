@@ -30,34 +30,36 @@ is where gen\_server comes in.
 gen\_server lets Erlang and Elixir programs fake global state. Lets write
 a simple program to work off of.
 
-    defmodule Incrementor do
-      
-      use GenServer.Behavior
+{% highlight ruby %}
+defmodule Incrementor do
+  
+  use GenServer.Behavior
 
-      defrecord State, counter: 0
+  defrecord State, counter: 0
 
-      # Callbacks
+  # Callbacks
 
-      def init(_args) do
-        {:ok, State.new}
+  def init(_args) do
+    {:ok, State.new}
 
-      def handle_call(:add, _from, state) do
-        new_state = state.increment_counter
-        {:reply, new_state.counter, new_state}
-      end
+  def handle_call(:add, _from, state) do
+    new_state = state.increment_counter
+    {:reply, new_state.counter, new_state}
+  end
 
-      def handle_call(request, from, state) do
-        super(request, from, state)
-      end
+  def handle_call(request, from, state) do
+    super(request, from, state)
+  end
 
-    end
+end
 
-    # In iex
+# In iex
 
-    :gen_server.start_link({ :local, Incrementor }, Incrementor, [], [])
-    :gen_server.call(Incrementor, :add) #=> 1
-    :gen_server.call(Incrementor, :add) #=> 2
-    :gen_server.call(Incrementor, :add) #=> 3
+:gen_server.start_link({ :local, Incrementor }, Incrementor, [], [])
+:gen_server.call(Incrementor, :add) #=> 1
+:gen_server.call(Incrementor, :add) #=> 2
+:gen_server.call(Incrementor, :add) #=> 3
+{% endhighlight %}
 
 OK, what did we do there?  First thing was create a module and use the
 GenServer behavior.  That notifies the Erlang VM that this module will respond to

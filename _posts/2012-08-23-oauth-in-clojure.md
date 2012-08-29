@@ -10,41 +10,43 @@ For this guide I will be using `stuarth/clj-oauth2 "0.3.2"`.  First add that as
 a dependency to your project.clj file.  Next lets create a authentication
 module.
 
-    (ns authentication
-      (:require
-        [cheshire.core :refer [parse-string]
-        [clj-oauth2.client :as oauth2]))
+{% highlight clojure %}
+(ns authentication
+  (:require
+    [cheshire.core :refer [parse-string]
+    [clj-oauth2.client :as oauth2]))
 
-    (def login-uri
-      "https://accounts.google.com")
+(def login-uri
+  "https://accounts.google.com")
 
-    (def google-com-oauth2
-      {:authorization-uri (str login-uri "/o/oauth2/auth")
-       :access-token-uri (str login-uri "/o/oauth2/token")
-       :redirect-uri "http://localhost:8080/authentication/callback"
-       :client-id "CLIENT"
-       :client-secret "CLIENT-SECRET"
-       :access-query-param :access_token
-       :scope ["https://www.googleapis.com/auth/userinfo.email"]
-       :grant-type "authorization_code"
-       :access-type "online"
-       :approval_prompt ""})
-    
-    (def auth-req
-      (oauth2/make-auth-request google-com-oauth2))
+(def google-com-oauth2
+  {:authorization-uri (str login-uri "/o/oauth2/auth")
+   :access-token-uri (str login-uri "/o/oauth2/token")
+   :redirect-uri "http://localhost:8080/authentication/callback"
+   :client-id "CLIENT"
+   :client-secret "CLIENT-SECRET"
+   :access-query-param :access_token
+   :scope ["https://www.googleapis.com/auth/userinfo.email"]
+   :grant-type "authorization_code"
+   :access-type "online"
+   :approval_prompt ""})
 
-    (defn- google-access-token [request]
-      (oauth2/get-access-token google-com-oauth2 (:params request) auth-req))
+(def auth-req
+  (oauth2/make-auth-request google-com-oauth2))
 
-    (defn- google-user-email [access-token]
-      (let [response (oauth2/get "https://www.googleapis.com/oauth2/v1/userinfo" {:oauth access-token})]
-        (get (parse-string (:body response)) "email")))
+(defn- google-access-token [request]
+  (oauth2/get-access-token google-com-oauth2 (:params request) auth-req))
 
-    ;; Redirect them to (:uri auth-req)
+(defn- google-user-email [access-token]
+  (let [response (oauth2/get "https://www.googleapis.com/oauth2/v1/userinfo" {:oauth access-token})]
+    (get (parse-string (:body response)) "email")))
 
-    ;; When they comeback to /authentication/callback
-    (google-user-email  ;=> user's email trying to lgo in
-      (google-access-token *request*))
+;; Redirect them to (:uri auth-req)
+
+;; When they comeback to /authentication/callback
+(google-user-email  ;=> user's email trying to lgo in
+  (google-access-token *request*))
+{% endhighlight %}
 
 So what did we do here?  First of all we required the OAuth2 dependency into
 our namespace. We also included cheshire, Clojure's JSON parsing library. Then we 
@@ -61,11 +63,11 @@ them to `(:uri authentication/auth-req)`.
 When the user gets back to our application it will be at out callback uri.
 The request params of this request should look like,
 
-    {:code "4/dasfjkhadsfkalsdasdfaskjf}
+{% highlight clojure %}
+{:code "4/dasfjkhadsfkalsdasdfaskjf}
+{% endhighlight %}
 
 Using this request object we can get back a access-token from Google.  Finally
 once we have an access token, we get start making oauth/get's to retrieve user
 info from Google.  I've written the method google-user-email, but you can get
 other values from the user if you change the scope of your request.
-
-

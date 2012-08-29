@@ -10,39 +10,45 @@ There is no good enough when it comes to unit testing.  Every line of code
 of your program should be executed at least once.  Lets take a look at an 
 example of code that is normally not tested.
 
-    def get_move_from_user
-      cords = @io.gets.chomp
+{% highlight ruby %}
+def get_move_from_user
+  cords = @io.gets.chomp
 
-      raise IllegalMove.new("Bad input") unless cards =~ /^\d+$/
+  raise IllegalMove.new("Bad input") unless cards =~ /^\d+$/
 
-      cords
-    rescue IllegalMove => error
-      display_text "Illegal Move: #{error.message}. Please try again"
-      retry
-    end
+  cords
+rescue IllegalMove => error
+  display_text "Illegal Move: #{error.message}. Please try again"
+  retry
+end
+{% endhighlight %}
 
 This example shows a rescue block with a retry.  This is hard to test, as there
 is no good way to make sure that the exception was raised. Instead of skipping
 those two lines, we can create a IOMock object that takes an array of input to
 return one at a time.
 
-    class IOMock
-      def initialize(input)
-        @input = Array(input)
-      end
+{% highlight ruby %}
+class IOMock
+  def initialize(input)
+    @input = Array(input)
+  end
 
-      def gets
-        @input.pop
-      end
-    end
+  def gets
+    @input.pop
+  end
+end
+{% endhighlight %}
 
 This now allows us to pass in multiple inputs, the first failing and the second
 succeeding.
 
-    def test_get_move_from_user
-      mover = Mover.new( IOMock.new(['1', 'a']) )
-      assert_equal '1', mover.get_move_from_user
-    end
+{% highlight ruby %}
+def test_get_move_from_user
+  mover = Mover.new( IOMock.new(['1', 'a']) )
+  assert_equal '1', mover.get_move_from_user
+end
+{% endhighlight %}
 
 Suddenly we're two lines closer to 100%.
 

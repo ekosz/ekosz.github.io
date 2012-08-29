@@ -25,19 +25,20 @@ And then add the paginate link to the bottom of the index page.
 
 Now to add some javascript that would replace the next link with the posts from
 the next page when the user scrolled to it.
-
-    var rebind = function() {
-      $("#next").appear(function() {
-        var self = this;
-        $(self).fadeOut(function() {
-          $.get($("#next a").attr('href'), function(data) {
-            $(self).remove();
-            $("#main").append($(data).find("#posts"));
-            rebind();
-          });
-        });
+{% highlight javascript %}
+var rebind = function() {
+  $("#next").appear(function() {
+    var self = this;
+    $(self).fadeOut(function() {
+      $.get($("#next a").attr('href'), function(data) {
+        $(self).remove();
+        $("#main").append($(data).find("#posts"));
+        rebind();
       });
-    }
+    });
+  });
+}
+{% endhighlight %}
 
 This code finds the \#next element and attaches a function to its appear event.
 That function fades out the element, grabs the HTML from the page its pointing

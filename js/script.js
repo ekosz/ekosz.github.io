@@ -22,7 +22,6 @@ $(function() {
   rebind = function() {
     bindNext();
     $("time.timeago").timeago();
-    $('pre code').each(function(i, e) {hljs.highlightBlock(e, '    ')});
   }
 
   // MAIN LOOP

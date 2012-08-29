@@ -15,38 +15,43 @@ For example, my Tic Tac Toe board display like this:
 
 When I first wrote the presentation logic it looked like:
 
-    @board.grid.each_with_index do |row, i|
-       row.each_with_index do |cell, j|
-         print cell || (i*3)+(j+1)
-       end
-       puts
-    end
+{% highlight ruby %}
+@board.grid.each_with_index do |row, i|
+   row.each_with_index do |cell, j|
+     print cell || (i*3)+(j+1)
+   end
+   puts
+end
+{% endhighlight %}
 
 Very simple. Display a letter, if there is one, or display the number of the
 cell.  The only problem was that my view layer was no longer dumb.  It know how
 to count cells.  Even the most simple logic should be extracted out of the view
 layer.  So I created a presenter instead.
 
-    class BoardPresenter
-      def initialize(board)
-        @board = board
-      end
+{% highlight ruby %}
+class BoardPresenter
+  def initialize(board)
+    @board = board
+  end
 
-      def grid
-        @board.grid.each_with_index.map do |row, i|
-           row.each_with_index.map do |cell, j|
-             cell || (i*3)+(j+1)
-           end
-        end
-      end
-
+  def grid
+    @board.grid.each_with_index.map do |row, i|
+       row.each_with_index.map do |cell, j|
+         cell || (i*3)+(j+1)
+       end
     end
+  end
+end
+{% endhighlight %}
 
 Now my view layer is that more concise:
 
-    BoardPresenter.new(@board).grid.each do |row|
-      row.each do |cell|
-        print cell
-      end
-      puts
-    end
+{% highlight ruby %}
+BoardPresenter.new(@board).grid.each do |row|
+  row.each do |cell|
+    print cell
+  end
+  puts
+end
+{% endhighlight %}
