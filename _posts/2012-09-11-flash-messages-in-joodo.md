@@ -18,7 +18,7 @@ First off we need to set the message in the controller.
 
 Now we can grab this flash message from our view.
 
-{% hightlight clojure %}
+{% highlight clojure %}
 (if-let [flash (:flash *request*)]
   [:div {:class "flash"}
     (if-let [messages (:messages flash)]
