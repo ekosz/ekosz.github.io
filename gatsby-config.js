@@ -1,9 +1,9 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Starter Blog`,
+    title: `Journey to Masterclass`,
     author: {
       name: `Eric Koslow`,
-      summary: `A programmer with too much time on his hands`,
+      summary: `a programmer with too much time on his hands`,
     },
     description: `A blog about programming and stuff`,
     siteUrl: `https://ekosz.github.io/`,
