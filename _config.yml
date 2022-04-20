@@ -1,9 +1,0 @@
-url: https://ekosz.github.com
-title: journey to masterclass
-
-author: Eric Koslow
-email: ekoslow@gmail.com
-twitter: ekosz1
-
-exclude: ['README.md', 'Gemfile.lock', 'Gemfile']
-paginate: 3
