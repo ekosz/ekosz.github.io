@@ -46,11 +46,13 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   for (const archive of archivePosts) {
     const fileName = path.basename(archive.fileAbsolutePath, ".md");
-    const [year, month, day] = archive.frontmatter.date.split('T')[0].split("-");
+    const [year, month, day] = archive.frontmatter.date.split("T")[0].split("-");
+    const fromPath = "/" + [year, month, day, fileName].join("/") + ".html";
     createRedirect({
-      fromPath: "/" + [year, month, day, fileName].join("/"),
+      fromPath,
       toPath: archive.fields.slug,
       isPermanent: true,
+      redirectInBrowser: true,
     });
   }
 
