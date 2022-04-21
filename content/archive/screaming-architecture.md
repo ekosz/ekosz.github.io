@@ -39,7 +39,7 @@ MVC layout, that we'll have to change.
 
 Lets edit the core.clj file.
 
-{% highlight clojure %}
+```clojure
 (defroutes !-APP_NAME-!-routes
   (GET "/" [] (render-template "index"))
     (controller-router '!-APP_NAME-!.controller)
@@ -51,14 +51,14 @@ Lets edit the core.clj file.
     !-APP_NAME-!-routes
       (wrap-view-context :template-root "!-DIR_NAME-!/view" :ns
       `!-APP_NAME-!.view.view-helpers)))
-{% endhighlight %}
+```
 
 The important lines here are the controller-router and wrap-view-context. These 
 lines set Joodo looking the controller/ directory for controllers and view/
 directory for views.  Lets change those lines to be a little more free form.
 
 
-{% highlight clojure %}
+```clojure
 (defroutes !-APP_NAME-!-routes
   (GET "/" [] (render-template "view/index"))
     (controller-router '!-APP_NAME-!)
@@ -73,7 +73,7 @@ directory for views.  Lets change those lines to be a little more free form.
       (wrap-view-context :template-root "!-DIR_NAME-!" 
                          :layout "view/layout" 
                          :ns `!-APP_NAME-!.view.view-helpers)))
-{% endhighlight %}
+```
 
 Here we changed the view-context to point to the app directory and the
 controller-router to also point to the route directory.  Because of these

@@ -15,21 +15,21 @@ For example, my Tic Tac Toe board display like this:
 
 When I first wrote the presentation logic it looked like:
 
-{% highlight ruby %}
+```ruby
 @board.grid.each_with_index do |row, i|
    row.each_with_index do |cell, j|
      print cell || (i*3)+(j+1)
    end
    puts
 end
-{% endhighlight %}
+```
 
 Very simple. Display a letter, if there is one, or display the number of the
 cell.  The only problem was that my view layer was no longer dumb.  It know how
 to count cells.  Even the most simple logic should be extracted out of the view
 layer.  So I created a presenter instead.
 
-{% highlight ruby %}
+```ruby
 class BoardPresenter
   def initialize(board)
     @board = board
@@ -43,15 +43,15 @@ class BoardPresenter
     end
   end
 end
-{% endhighlight %}
+```
 
 Now my view layer is that more concise:
 
-{% highlight ruby %}
+```ruby
 BoardPresenter.new(@board).grid.each do |row|
   row.each do |cell|
     print cell
   end
   puts
 end
-{% endhighlight %}
+```

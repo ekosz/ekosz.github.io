@@ -30,7 +30,7 @@ is where gen\_server comes in.
 gen\_server lets Erlang and Elixir programs fake global state. Lets write
 a simple program to work off of.
 
-{% highlight ruby %}
+```ruby
 defmodule Incrementor do
   
   use GenServer.Behavior
@@ -59,7 +59,7 @@ end
 :gen_server.call(Incrementor, :add) #=> 1
 :gen_server.call(Incrementor, :add) #=> 2
 :gen_server.call(Incrementor, :add) #=> 3
-{% endhighlight %}
+```
 
 OK, what did we do there?  First thing was create a module and use the
 GenServer behavior.  That notifies the Erlang VM that this module will respond to

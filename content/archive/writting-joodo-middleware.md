@@ -16,7 +16,7 @@ next handler, or completely blow the stack and never call the next handler.
 
 Heres the code I ended up writing as a authentication middleware.
 
-{% highlight clojure %}
+```clojure
 (ns sample.middleware.authentication
   (:require [ring.util.response :refer [redirect]]
             [sample.athentication :refer [is-valid-user]]))
@@ -26,11 +26,11 @@ Heres the code I ended up writing as a authentication middleware.
     (if (is-valid-user request)
       (handler request) ; pass on request to next middleware
       (redirect "/authentication"))))
-{% endhighlight %}
+```
 
 Now I can use this middleware in my controllers.
 
-{% highlight clojure %}
+```clojure
 (ns sample.user.user-controller
   (:require [compojure.core :refer :all ]
             [sample.middleware.authentication :refer [with-valid-user]]))
@@ -40,4 +40,4 @@ Now I can use this middleware in my controllers.
     (context "/user" []
       (POST "/" [] (create-user))
       (GET "/new" [] (new-user)))))
-{% endhighlight %}
+```

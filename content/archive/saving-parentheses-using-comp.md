@@ -10,12 +10,12 @@ Thats why `comp` is such an awesome tool in any function language.  `comp` takes
 a series of functions and combines them into one big function. Its easier to
 see than it is to explain.
 
-{% highlight clojure%}
+```clojure
 ; The old way
 (:name (last (:fields (first (find-by-type "topic")))))
 ; The new hotness with comp
 ((comp :name last :fields first find-by-type) "topic")
-{% endhighlight %}
+```
 
 Each function passed to `comp` will be called in sequence.  This saves on
 parentheses and complexity.

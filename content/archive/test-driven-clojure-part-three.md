@@ -15,17 +15,17 @@ flowing in.
 In your normal coding directory, lets create a folder where all of our code is
 going to live.
 
-{% highlight bash %}
+```bash
 $ cd ~/Code
 $ mkdir katchie
 $ cd katchie
-{% endhighlight %}
+```
 
 Following proper coding habits we're going to create a project.clj.  The 
 project.clj stores the meta-information about a Clojure application.  Here is
 where we'll list our external dependencies and configure our setup.
 
-{% highlight clojure %}
+```clojure
 (defproject katchie "0.0.1"
   :description "A socail news aggregator"
   :dependencies [[org.clojure/clojure "1.4.0"]
@@ -36,13 +36,13 @@ where we'll list our external dependencies and configure our setup.
             [joodo/lein-joodo "0.11.0"]]
   :test-paths ["spec/"]
   :java-source-paths ["src/"])
-{% endhighlight %}
+```
 
 This might look complceted at first but lets break it down line by line.
 
-{% highlight clojure %}
+```clojure
 (defproject katchie "0.0.1"
-{% endhighlight %}
+```
 
 At the top level of our project.clj we call this special method defproject.
 The first argument is what we want to call the namespace of the project, and
@@ -50,19 +50,19 @@ the second is a string representation of the version.  We're going to use
 "0.0.1" for now, until we add some features.  But the end of this series we
 should be at our "1.0.0" release.
 
-{% highlight clojure %}
+```clojure
 :description "A social news aggregator"
-{% endhighlight %}
+```
 
 This is not very important to us, but if we were creating a tool for other
 developers to use, this would be the description they would see in leiningen
 next to the name of our project.
 
-{% highlight clojure %}
+```clojure
 :dependencies [[org.clojure/clojure "1.4.0"]
                [joodo "0.11.0"]
                [hyperion "3.3.0"]]
-{% endhighlight %}
+```
 
 These are the current dependencies of our project.  We'll be using Clojure
 version "1.4.0", Joodo "0.11.0", and Hyperion "3.3.0".  These might not be the
@@ -71,26 +71,26 @@ development of this project. After completing this series I'll leave it as
 a task to you to update these libraries to their most recent versions then
 update the project to work the updated APIs.
 
-{% highlight clojure %}
+```clojure
 :profiles {:dev {:dependencies [[speclj "2.3.1"]]}}
-{% endhighlight %}
+```
 
 We have another dependency, and that our testing framework Speclj.  We treat
 Speclj differently, because its a development dependency.  We won't need Speclj
 on our production server.
 
-{% highlight clojure %}
+```clojure
 :plugins [[speclj "2.3.1"]
           [joodo/lein-joodo "0.11.0"]]
-{% endhighlight %}
+```
 
 These lines add the Speclj and Joodo plugins to the Leiningen.  Command line
 interface.  We'll be using their commands later in the series.
 
-{% highlight clojure %}
+```clojure
 :test-paths ["spec/"]
 :java-source-paths ["src/"])
-{% endhighlight %}
+```
 
 These last lines help point our dependencies to the right locations.
 

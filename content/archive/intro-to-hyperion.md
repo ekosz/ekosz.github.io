@@ -8,15 +8,15 @@ off the choosing of a DB.
 
 First off add Hyperion to your project.clj file.
 
-{% highlight clojure %}
+```clojure
 (defproject sample "0.0.1"
   :dependencies [[hyperion/core "1.0.0"]])
-{% endhighlight %}
+```
 
 Next we can write a spec to test out the functionality of Hyperion. We'll be
 using [Speclj](http://speclj.com/) for the specs.
 
-{% highlight clojure %}
+```clojure
 (ns sample.core-spec
   (:require
     [speclj.core :refer :all]
@@ -28,7 +28,7 @@ using [Speclj](http://speclj.com/) for the specs.
           (it "can store a value"
             (save {:kind "test" :name "Eric"})
             (should= "Eric" ((comp :name first find-by-kind) "test"))))
-{% endhighlight %}
+```
 
 This is what the Hyperion API looks like. The `save` function takes a hash-map
 or record, and saves it to the datastore.  Each hash-map should have a type,
@@ -43,34 +43,34 @@ Running this spec we get the error.
 We can fix this by setting the DB to be a in-memory database in our core.clj
 file.
 
-{% highlight clojure %}
+```clojure
 (ns sample.core
   (:require
     [hyperion.core :refer [DS]]
     [hyperion.memory :refer [new-memory-datastore]]))
 
 (reset! DS (new-memory-datastore))
-{% endhighlight %}
+```
 
 Now we have passing tests!
 
 We can add another test to make sure the database resets between tests.
 
-{% highlight clojure %}
+```clojure
 (it "has a new database each test"
   (save {:kind "test" :name "Alex"})
   (should= 1 (count (find-by-kind "test"))))
-{% endhighlight %}
+```
 
 This should fail in conjunction with the other test.  We can fix it by wrapping
 our tests in a new-memory-datastore.
 
-{% highlight clojure %}
+```clojure
 (describe "Hyperion"
           (around [it]
                   (binding [*ds* (new-memory-datastore)]
                     (it)))
-{% endhighlight %}
+```
 
 This binds a new-memory-datastore for each test.  Specs should now be passing.
 

@@ -9,15 +9,15 @@ this happen in terms of databases and relations.
 In my hypothetical application I have users that have many documents.  Here's
 what their [Hyperion](https://github.com/8thlight/hyperion) protocols might look like.
 
-{% highlight clojure %}
+```clojure
 (ns sample.user.user
   (:require [hyperion.api :refer [defentity]]))
 
 (defentity User
   [name])
-{% endhighlight %}
+```
 
-{% highlight clojure %}
+```clojure
 (ns sample.document.document
   (:require [hyperion.api :refer [defentity]]))
 
@@ -25,12 +25,12 @@ what their [Hyperion](https://github.com/8thlight/hyperion) protocols might look
   [name]
   [body]
   [user-key :type :key])
-{% endhighlight %}
+```
 
 What if we wanted to add a method for users to get their corresponding
 documents? Follow certain conventions we can create a method that looks very OO.
 
-{% highlight clojure %}
+```clojure
 (ns sample.user.user
   (:require [hyperion.api :refer [defentity find-by-kind]]))
 
@@ -38,7 +38,7 @@ documents? Follow certain conventions we can create a method that looks very OO.
 
 (defn documents [this]
   (find-by-kind "document" :filters [:= :user-key (:key this)]))
-{% endhighlight %}
+```
 
 By using `this` as the name of the argument we are but into the mindset of
 manipulating User hashes.  Every function defined inside this namespace should

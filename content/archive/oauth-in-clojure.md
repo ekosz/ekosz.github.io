@@ -10,7 +10,7 @@ For this guide I will be using `stuarth/clj-oauth2 "0.3.2"`.  First add that as
 a dependency to your project.clj file.  Next lets create a authentication
 module.
 
-{% highlight clojure %}
+```clojure
 (ns authentication
   (:require
     [cheshire.core :refer [parse-string]
@@ -46,7 +46,7 @@ module.
 ;; When they comeback to /authentication/callback
 (google-user-email  ;=> user's email trying to lgo in
   (google-access-token *request*))
-{% endhighlight %}
+```
 
 So what did we do here?  First of all we required the OAuth2 dependency into
 our namespace. We also included cheshire, Clojure's JSON parsing library. Then we 
@@ -63,9 +63,9 @@ them to `(:uri authentication/auth-req)`.
 When the user gets back to our application it will be at out callback uri.
 The request params of this request should look like,
 
-{% highlight clojure %}
+```clojure
 {:code "4/dasfjkhadsfkalsdasdfaskjf}
-{% endhighlight %}
+```
 
 Using this request object we can get back a access-token from Google.  Finally
 once we have an access token, we get start making oauth/get's to retrieve user

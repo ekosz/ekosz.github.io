@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `Journey to Masterclass`,
+    title: `Blog name here`,
     author: {
       name: `Eric Koslow`,
       summary: `a programmer with too much time on his hands`,
@@ -16,7 +16,14 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/_posts`,
+        path: `${__dirname}/content/archive`,
+        name: `archive`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/content/blog`,
         name: `blog`,
       },
     },
@@ -105,7 +112,7 @@ module.exports = {
               }
             `,
             output: "/rss.xml",
-            title: "Journey to Masterclass RSS Feed",
+            title: "Blog name here RSS Feed",
           },
         ],
       },
@@ -113,8 +120,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Journey to Masterclass`,
-        short_name: `JtM`,
+        name: `Blog name here`,
+        short_name: `BNH`,
         start_url: `/`,
         background_color: `#ffffff`,
         // This will impact how browsers show your PWA/website

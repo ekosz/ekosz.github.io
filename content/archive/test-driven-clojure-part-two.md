@@ -15,12 +15,12 @@ If you're worried about control of your system you can go to Leiningen's
 instructions on installation.  For everyone else, running the following command
 should get you setup.
 
-{% highlight bash %}
+```bash
 $ mkdir ~/bin && 
 cd ~/bin && 
 wget https://raw.github.com/technomancy/leiningen/preview/bin/lein &&
 chmod 755 lein
-{% endhighlight %}
+```
 
 Now we need to add our newly created ~/bin directory to our load path.
 I normally add this to my .profile file in my home directory. If you use
@@ -31,15 +31,15 @@ probably does.
 Either add the following to your existing .profile file, or create it in your
 home directory.
 
-{% highlight bash %}
+```bash
 # Add user bin files
 export PATH=/Users/ekoslow/bin:$PATH
-{% endhighlight %}
+```
 
 If everything went well, after opening up a new console you should be able to
 do something like this:
 
-{% highlight bash %}
+```bash
 $ lein -v
 Leiningen 2.0.0-preview7 on Java 1.6.0_33 Java HotSpot(TM) 64-Bit Server VM
-{% endhighlight %}
+```

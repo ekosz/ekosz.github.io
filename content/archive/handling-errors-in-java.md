@@ -10,11 +10,11 @@ to be make someone else deal with it, unless you can't.
 
 Lets say we have a method that reads from a file.
 
-{% highlight java %}
+```java
 public String readFile(File file) {
     return new Scanner(file).useDelimiter("\\Z").next();
 }
-{% endhighlight %}
+```
 
 When trying to compile this piece of code we'll be told that we need the
 handle the `FileNotFoundException`.  We go back to our rule of thumb and
@@ -23,11 +23,11 @@ error.
 
 To make the compile error go away all we have to add is a throws declaration.
 
-{% highlight java %}
+```java
 public String readFile(File file) throws FileNotFoundException {
     return new Scanner(file).useDelimiter("\\Z").next();
 }
-{% endhighlight %}
+```
 
 ### Dealing with it ourselves
 
@@ -38,7 +38,7 @@ errors coming at us or we're going to die as a thread.
 This is where try-catch blocks come into play.  These catch errors and let us
 deal with them.
 
-{% highlight java %}
+```java
 public void run() {
     try {
         String request = io.read();
@@ -56,4 +56,4 @@ public void run() {
         }
     }
 }
-{% endhighlight %}
+```
