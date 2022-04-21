@@ -5,14 +5,20 @@ import Bio from "../components/bio";
 import Layout from "../components/layout";
 import Seo from "../components/seo";
 
-const BlogIndex = ({ data, location }) => {
+const BlogArchive = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`;
   const posts = data.allMarkdownRemark.nodes;
 
   return (
     <Layout location={location} title={siteTitle}>
-      <Seo title="All posts" />
+      <Seo title="Achived posts" />
       <Bio />
+      <h2>Archived Posts</h2>
+      <p>
+        Welcome to my archived posts. These we all written over a decade ago when
+        I was around 20/21. Please don't read too much into them, they were written
+        by a very diffrent person than I am now.
+      </p>
       <ol style={{ listStyle: `none` }}>
         {posts.map(post => {
           const title = post.frontmatter.title || post.fields.slug;
@@ -40,19 +46,12 @@ const BlogIndex = ({ data, location }) => {
             </li>
           );
         })}
-        <li key="achive" class="post-list-item">
-          <header>
-            <h2>
-              <Link to="/archive">Visit the archive</Link>
-            </h2>
-          </header>
-        </li>
       </ol>
     </Layout>
   );
 };
 
-export default BlogIndex;
+export default BlogArchive;
 
 export const pageQuery = graphql`
   query {
@@ -62,8 +61,8 @@ export const pageQuery = graphql`
       }
     }
     allMarkdownRemark(
-      filter: { fileAbsolutePath: { regex: "/content/blog/" } }
       sort: { fields: [frontmatter___date], order: DESC }
+      filter: {fileAbsolutePath: {regex: "/content\\/archive/"}}
     ) {
       nodes {
         excerpt

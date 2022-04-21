@@ -2,7 +2,7 @@ const path = require(`path`);
 const { createFilePath } = require(`gatsby-source-filesystem`);
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
-  const { createPage } = actions;
+  const { createPage, createRedirect } = actions;
 
   // Define a template for blog post
   const blogPost = path.resolve(`./src/templates/blog-post.js`);
@@ -17,6 +17,10 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
             fields {
               slug
             }
+            fileAbsolutePath
+            frontmatter {
+              date
+            }
           }
         }
       }
@@ -28,27 +32,48 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     return;
   }
 
-  const posts = result.data.allMarkdownRemark.nodes;
+  const [blogPosts, archivePosts] = result.data.allMarkdownRemark.nodes.reduce(
+    (acc, post) => {
+      if (post.fileAbsolutePath.includes("content/blog")) {
+        acc[0].push(post);
+      } else {
+        acc[1].push(post);
+      }
+      return acc;
+    },
+    [[], []]
+  );
 
-  // Create blog posts pages
-  // But only if there's at least one markdown file found at "content/blog" (defined in gatsby-config.js)
-  // `context` is available in the template as a prop and as a variable in GraphQL
-
-  if (posts.length > 0) {
-    posts.forEach((post, index) => {
-      const previousPostId = index === 0 ? null : posts[index - 1].id;
-      const nextPostId = index === posts.length - 1 ? null : posts[index + 1].id;
-
-      createPage({
-        path: post.fields.slug,
-        component: blogPost,
-        context: {
-          id: post.id,
-          previousPostId,
-          nextPostId,
-        },
-      });
+  for (const archive of archivePosts) {
+    const fileName = path.basename(archive.fileAbsolutePath, ".md");
+    const [year, month, day] = archive.frontmatter.date.split('T')[0].split("-");
+    createRedirect({
+      fromPath: "/" + [year, month, day, fileName].join("/"),
+      toPath: archive.fields.slug,
+      isPermanent: true,
     });
+  }
+
+  for (const posts of [blogPosts, archivePosts]) {
+    // Create blog posts pages
+    // But only if there's at least one markdown file found at "content/*" (defined in gatsby-config.js)
+    // `context` is available in the template as a prop and as a variable in GraphQL
+    if (posts.length > 0) {
+      posts.forEach((post, index) => {
+        const previousPostId = index === 0 ? null : posts[index - 1].id;
+        const nextPostId = index === posts.length - 1 ? null : posts[index + 1].id;
+
+        createPage({
+          path: post.fields.slug,
+          component: blogPost,
+          context: {
+            id: post.id,
+            previousPostId,
+            nextPostId,
+          },
+        });
+      });
+    }
   }
 };
 
@@ -56,12 +81,13 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
 
   if (node.internal.type === `MarkdownRemark`) {
+    const isArchive = node.fileAbsolutePath.includes("content/archive");
     const value = createFilePath({ node, getNode });
 
     createNodeField({
       name: `slug`,
       node,
-      value,
+      value: isArchive ? `/archive${value}` : value,
     });
   }
 };
