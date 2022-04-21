@@ -79,7 +79,7 @@ class Parser
 
   private
 
-  def next\_token
+  def next_token
     @tokens[@pos].tap { @pos += 1 }
   end
 
