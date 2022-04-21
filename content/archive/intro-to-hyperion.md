@@ -2,8 +2,9 @@
 title: Introduction to Hyperion
 date: 2012-08-27
 ---
+
 [Hyperion](https://github.com/8thlight/hyperion) is a common datastore API for
-Clojure.  It wraps various databases in a common API and lets developers hold
+Clojure. It wraps various databases in a common API and lets developers hold
 off the choosing of a DB.
 
 First off add Hyperion to your project.clj file.
@@ -31,9 +32,9 @@ using [Speclj](http://speclj.com/) for the specs.
 ```
 
 This is what the Hyperion API looks like. The `save` function takes a hash-map
-or record, and saves it to the datastore.  Each hash-map should have a type,
-this will be the collection the record is associated with.  We then can use
-lookup APIs like `find-by-kind`.  This method saves a kind and returns a vector
+or record, and saves it to the datastore. Each hash-map should have a type,
+this will be the collection the record is associated with. We then can use
+lookup APIs like `find-by-kind`. This method saves a kind and returns a vector
 of hash-maps that correspond to that type.
 
 Running this spec we get the error.
@@ -62,7 +63,7 @@ We can add another test to make sure the database resets between tests.
   (should= 1 (count (find-by-kind "test"))))
 ```
 
-This should fail in conjunction with the other test.  We can fix it by wrapping
+This should fail in conjunction with the other test. We can fix it by wrapping
 our tests in a new-memory-datastore.
 
 ```clojure
@@ -72,10 +73,10 @@ our tests in a new-memory-datastore.
                     (it)))
 ```
 
-This binds a new-memory-datastore for each test.  Specs should now be passing.
+This binds a new-memory-datastore for each test. Specs should now be passing.
 
 The rest of the Hyperion API can be found on its [Github page](https://github.com/8thlight/hyperion).
 As of this writing Hyperion currently supports Google App Engine, MySQL,
-Postgres, Sqlite, Riak, and MongoDB.  Using Hyperion the choosing a database
+Postgres, Sqlite, Riak, and MongoDB. Using Hyperion the choosing a database
 can happen far down the development pipeline as well switching out the DB is as
 simple as changing a line of code.

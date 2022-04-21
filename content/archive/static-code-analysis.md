@@ -2,8 +2,9 @@
 title: Static code analysis
 date: 2012-07-12
 ---
-On the way to being a great programmer, everyone hits the same roadblock.  Code
-Smells.  One of the tools I have started using to help me recognize and locate
+
+On the way to being a great programmer, everyone hits the same roadblock. Code
+Smells. One of the tools I have started using to help me recognize and locate
 code smells is "Static Code Analysis".
 
 Static code analysis is the process of running a program that instead of
@@ -13,7 +14,7 @@ tools out there, the two I've become reliant on are [Reek](https://github.com/tr
 ### Reek
 
 Reek is the older of the two tools and provides a good foundation for programmers to
-get started with. 
+get started with.
 
     threebythree_implementations/brute_force_implementation.rb -- 5 warnings:
       TicTacToe::BruteForceImplementation#block_fork! has approx 7 statements (LongMethod)
@@ -22,15 +23,15 @@ get started with.
       TicTacToe::BruteForceImplementation#each_position contains iterators nested 2 deep (NestedIterators)
       TicTacToe::BruteForceImplementation#each_position doesn't depend on instance state (LowCohesion)
 
-Reek looks at ones code, and provides a quick summary for whats wrong.  The
+Reek looks at ones code, and provides a quick summary for whats wrong. The
 best part of reek, is its [Wiki](https://github.com/troessner/reek/wiki/Code-Smells).  
-There one can get detailed descriptions of the code smells it finds, how suggestions 
+There one can get detailed descriptions of the code smells it finds, how suggestions
 how how to fix them.
 
 ### Pelusa
 
 Pelusa is a relatively new comer to the SCA tools and definitely not for the faint
-of heart.  Based on [this blog post](http://binstock.blogspot.com/2008/04/perfecting-oos-small-classes-and-short.html) Pelusa is a harsh grader.
+of heart. Based on [this blog post](http://binstock.blogspot.com/2008/04/perfecting-oos-small-classes-and-short.html) Pelusa is a harsh grader.
 
     class GameTree
         ✿ Is below 50 lines ✗
@@ -54,5 +55,5 @@ the very best OO design patterns. Getting a perfect score may be hard, but if
 done, your code will thank you.
 
 As one grows as a programmer, they'll probably find that SCA tools become less
-useful as they can spots smells easier.  But for new programmers trying to up
+useful as they can spots smells easier. But for new programmers trying to up
 their game, I can't suggest them enough.

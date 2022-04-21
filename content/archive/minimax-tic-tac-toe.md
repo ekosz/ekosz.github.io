@@ -2,21 +2,22 @@
 title: Minimax tic tac toe
 date: 2012-07-11
 ---
+
 I already implemented TicTacToe using heuristics, today I was given the task to
 reimplement my TicTacToe AI using the MiniMax algorithm.
 
 If you don't already know, MiniMax is an algorithm that can be used in two
-player games such as Chess, Checkers, or TicTacToe.  Using a game tree the
+player games such as Chess, Checkers, or TicTacToe. Using a game tree the
 algorithm tries to maximize rewards during your turn, and minimize rewards
-during the opponents turn.  Hence its name "Minimax".
+during the opponents turn. Hence its name "Minimax".
 
 There are two parts to the MiniMax algorithm: the evaluator and the game tree
-logic.  
+logic.
 
 ### Evaluator
 
-The evaluator is custom to the each implantation of Minimax.  Its job
-is to take a game state, and rank it.  For TicTacToe its job is simple.
+The evaluator is custom to the each implantation of Minimax. Its job
+is to take a game state, and rank it. For TicTacToe its job is simple.
 
     You Won:   1
     You Lost: -1
@@ -32,7 +33,7 @@ The other part of the Minimax algorithm is the game tree logic, which is the
 same for all of its implementations.
 
 The basic pattern looks like:
-  
+
     class GameTree
       def initialze(game_state, player, whos_turn=nil)
         @game_state, @player = game_state, player
@@ -56,7 +57,7 @@ The basic pattern looks like:
       end
 
       def children
-        potential_moves.map { |move| GameTree.new(move, player, next_turn) } 
+        potential_moves.map { |move| GameTree.new(move, player, next_turn) }
       end
 
       # ...

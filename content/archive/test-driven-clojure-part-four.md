@@ -2,7 +2,8 @@
 title: Test driven Clojure part IV
 date: 2012-10-10
 ---
-In a series about tests we haven't been writing many of them.  Lets change
+
+In a series about tests we haven't been writing many of them. Lets change
 that.
 
 ### Writing the first test
@@ -35,15 +36,15 @@ Running `lein spec` we should get the error
 java.io.FileNotFoundException: Could not locate katchie/core__init.class or katchie/core.clj on classpath
 ```
 
-This is good.  Though a bit cryptic, it is telling us that it couldn't find the file
-katchie/core.clj file.  Lets create it and see if that gets rid of the error.
+This is good. Though a bit cryptic, it is telling us that it couldn't find the file
+katchie/core.clj file. Lets create it and see if that gets rid of the error.
 
 ```bash
 $ touch src/katchie/core.clj
 $ lein spec
 ```
 
-Success!  We have a new error.
+Success! We have a new error.
 
 ```text
 java.lang.Exception: namespace 'katchie.core' not found after loading '/katchie/core'
@@ -65,4 +66,4 @@ Finished in 0.00071 seconds
 1 examples, 0 failures
 ```
 
-You've successfully written a test for you application!  Congratulations.
+You've successfully written a test for you application! Congratulations.

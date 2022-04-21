@@ -2,8 +2,9 @@
 title: Handling errors in Java
 date: 2012-09-19
 ---
+
 There are two ways to handle errors in Java; you can handle the error yourself,
-or make someone else deal with it.  The general rule of thumb to follow seems
+or make someone else deal with it. The general rule of thumb to follow seems
 to be make someone else deal with it, unless you can't.
 
 ### Making someone else deal
@@ -17,7 +18,7 @@ public String readFile(File file) {
 ```
 
 When trying to compile this piece of code we'll be told that we need the
-handle the `FileNotFoundException`.  We go back to our rule of thumb and
+handle the `FileNotFoundException`. We go back to our rule of thumb and
 realize that there is nothing stopping us from making someone else deal with the
 error.
 
@@ -31,11 +32,11 @@ public String readFile(File file) throws FileNotFoundException {
 
 ### Dealing with it ourselves
 
-Now lets say we're writing a Thread class.  If any error happens here we have
-no one the pass the blame to.  We're at the top, and need to deal with the
+Now lets say we're writing a Thread class. If any error happens here we have
+no one the pass the blame to. We're at the top, and need to deal with the
 errors coming at us or we're going to die as a thread.
 
-This is where try-catch blocks come into play.  These catch errors and let us
+This is where try-catch blocks come into play. These catch errors and let us
 deal with them.
 
 ```java

@@ -15,9 +15,9 @@ const BlogArchive = ({ data, location }) => {
       <Bio />
       <h2>Archived Posts</h2>
       <p>
-        Welcome to my archived posts. These we all written over a decade ago when
-        I was around 20/21. Please don't read too much into them, they were written
-        by a very diffrent person than I am now.
+        Welcome to my archived posts. These we all written over a decade ago when I was around
+        20/21. Please don't read too much into them, they were written by a very diffrent person
+        than I am now.
       </p>
       <ol style={{ listStyle: `none` }}>
         {posts.map(post => {
@@ -62,7 +62,7 @@ export const pageQuery = graphql`
     }
     allMarkdownRemark(
       sort: { fields: [frontmatter___date], order: DESC }
-      filter: {fileAbsolutePath: {regex: "/content\\/archive/"}}
+      filter: { fileAbsolutePath: { regex: "/content/archive/" } }
     ) {
       nodes {
         excerpt

@@ -2,12 +2,13 @@
 title: Introduction to Joodo
 date: 2012-08-20
 ---
+
 This week I'm diving head first into Clojure and more specifically web
-development in Clojure.  Clojure has a view frameworks to choose from when
+development in Clojure. Clojure has a view frameworks to choose from when
 working with the web, but I'll be talking about [Joodo](http://www.joodoweb.com/).
 
-Joodo is a lightweight framework with a very small API.  It tries to do the
-least amount of work possible then get out of your way.  
+Joodo is a lightweight framework with a very small API. It tries to do the
+least amount of work possible then get out of your way.
 
 ### Instillation
 
@@ -15,8 +16,8 @@ First of all you're going to want to have Leiningen 2 installed if its not
 already.
 
 ```bash
-mkdir ~/bin && 
-wget --no-check-certificate https://raw.github.com/technomancy/leiningen/preview/bin/lein ~/bin/ && 
+mkdir ~/bin &&
+wget --no-check-certificate https://raw.github.com/technomancy/leiningen/preview/bin/lein ~/bin/ &&
 chmod 755 ~/bin/lein
 ```
 

@@ -2,16 +2,17 @@
 title: Testing Elixir
 date: 2012-07-30
 ---
+
 When learning a new linage, one of the first steps one needs to take is
-learning its testing frameworks.  Elixir being a relatively new language, it
-only has one ExUnit.  In this blog post, I'll walk you through writing your
+learning its testing frameworks. Elixir being a relatively new language, it
+only has one ExUnit. In this blog post, I'll walk you through writing your
 first tests.
 
 First thing to note are that Elixir tests are written in `.exs` files, not the
-standard `.ex` Elixir file format.  `.exs` files are written in the Elixir
-language, but are never compiled only ever interpreted.  
+standard `.ex` Elixir file format. `.exs` files are written in the Elixir
+language, but are never compiled only ever interpreted.
 
-Now lets jump into some code.  First lets create a test helper.
+Now lets jump into some code. First lets create a test helper.
 
     $ mkdir test
     $ touch test/test_helper.exs
@@ -20,8 +21,8 @@ Now lets jump into some code.  First lets create a test helper.
 
     ExUnit.start []
 
-Thats all we need to get started.  We can later put utility methods in here, if
-they're needed.  Now lets write a testing module.
+Thats all we need to get started. We can later put utility methods in here, if
+they're needed. Now lets write a testing module.
 
     ### Inside adder_test.exs
 
@@ -31,10 +32,10 @@ they're needed.  Now lets write a testing module.
       use ExUnit.Case, async: true
     end
 
-Here we do a few things.  Require the test\_helper file we just wrote, create
-the module we will fill with tests, and import the ExUnit.Case methods.  One
-thing to note here is the async option on ExUnit.Case.  When set to true, all
-the of the tests will run in parallel.  Whenever possible set this to true. Lets
+Here we do a few things. Require the test_helper file we just wrote, create
+the module we will fill with tests, and import the ExUnit.Case methods. One
+thing to note here is the async option on ExUnit.Case. When set to true, all
+the of the tests will run in parallel. Whenever possible set this to true. Lets
 write a test.
 
     test "adds one and one correctly" do
@@ -42,15 +43,14 @@ write a test.
     end
 
 Like many other languages ExUnit uses the standard assert clauses, but wraps
-them in a test block. We can run this test with the command `elixir
-test/adder_test.exs`.  If everything was written correctly you should see:
+them in a test block. We can run this test with the command `elixir test/adder_test.exs`. If everything was written correctly you should see:
 
     .
 
     1 test, 0 failures.
 
-Woot! We ran our first Elixir test.  Now lets stream line the process with
-a shell script. 
+Woot! We ran our first Elixir test. Now lets stream line the process with
+a shell script.
 
     # Inside tester.sh
 
@@ -59,4 +59,4 @@ a shell script.
 This script will load every `.ex` file in your lib directory, then require the
 test helper, and then load each test file sequentially.
 
-Thats it.  Now just `sh tester.sh` to run all your tests.  Have fun!
+Thats it. Now just `sh tester.sh` to run all your tests. Have fun!

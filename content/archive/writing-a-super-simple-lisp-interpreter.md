@@ -2,16 +2,17 @@
 title: Writing a super simple lisp interpreter
 date: 2012-10-16
 ---
+
 It seems that its every programmers right of passage to write their own lisp
-interpreter.  What most beginner programmers don't realize is just how easy this
-feet can be.  Here I'll demonstrate how to create one of these interpreters in
+interpreter. What most beginner programmers don't realize is just how easy this
+feet can be. Here I'll demonstrate how to create one of these interpreters in
 less than 100 LOC.
 
 ### The lexer
 
-First part of any interpreter is the lexer.  The lexers job to is to read
+First part of any interpreter is the lexer. The lexers job to is to read
 a string and turn it into a stream of tokens for the next part of the
-interpreter.  This can be done in a simple Regex statement.
+interpreter. This can be done in a simple Regex statement.
 
 Lets first write some tests to make sure that our lexer is working.
 
@@ -26,7 +27,7 @@ assert(%w[ ( 1 abc ) ], lex("(1 abc)"))
 assert(%w[ (= 2 ( + 1  1 ) ) ], lex("(= 2 (+ 1 1))"))
 ```
 
-Alright this should handle all of the use cases of our lexer.  Now lets get
+Alright this should handle all of the use cases of our lexer. Now lets get
 some of these tests passing.
 
 ```ruby
@@ -35,10 +36,10 @@ def lex(string)
 end
 ```
 
-Thats all we need to get our tests passing.  These regex tokenizes our string
+Thats all we need to get our tests passing. These regex tokenizes our string
 using words, parentheses, plus signs and equal signs.
 
-Now that the lexer is written we can write our parser.  The parser takes in the
+Now that the lexer is written we can write our parser. The parser takes in the
 token from our lexer, and turns them into s-expressions that our interpretor
 can use. Lets write some tests for our parser.
 
@@ -50,7 +51,7 @@ assert([:"=", 2, [:+, 1, 1]], parse("(= 2 (+ 1 1))"))
 ```
 
 We want our parser to treat our numbers as numbers and everything else as
-symbols.  We also want it to create arrays as the s-expression forms.
+symbols. We also want it to create arrays as the s-expression forms.
 Implementing this it a bit more complicated but still reasonable.
 
 ```ruby
@@ -90,13 +91,13 @@ def parse(string)
 end
 ```
 
-The parser iterates over the tokens.  When it finds a open parenthesis, it
+The parser iterates over the tokens. When it finds a open parenthesis, it
 starts up a array and starts shovelling parsed tokens into it until it finds
-a closing parenthesis.  Otherwise it tries to convert the token into an
-Integer.  Failing that it turns the token into a symbol.
+a closing parenthesis. Otherwise it tries to convert the token into an
+Integer. Failing that it turns the token into a symbol.
 
 Now that our string has been lexed, then parsed into s-expressions we can
-finally interpret the results.  Interpreters can get as complicated as you
+finally interpret the results. Interpreters can get as complicated as you
 want, but for our purposes we're only going to support adding and comparing.
 Again we're going to start with our tests.
 
@@ -111,7 +112,7 @@ And for the interpreter itself.
 
 ```ruby
 class Interpreter
-  
+
   def initialize(expressions)
     @expressions = expressions
   end
@@ -140,5 +141,5 @@ end
 ```
 
 This interpreter has no idea of variables or state, but it works for our
-purposes.  From here we'd implement tracking the current environment and
+purposes. From here we'd implement tracking the current environment and
 removing the hard coded functions.

@@ -2,11 +2,12 @@
 title: Endless pagination in Jekyll
 date: 2012-08-02
 ---
+
 Yesterday I decided to move my blog over from my own custom solution to [Jekyll](https://github.com/mojombo/jekyll/).
 The process mostly involved renaming and shuffling a lot files
-around. After 20 mins I was able to start the Jekyll server and saw my blog, but it 
-was missing its endless pagination I had built into the last version.  Some quick 
-Googling showed a distinct lack of endless pagination in Jekyll, so I 
+around. After 20 mins I was able to start the Jekyll server and saw my blog, but it
+was missing its endless pagination I had built into the last version. Some quick
+Googling showed a distinct lack of endless pagination in Jekyll, so I
 decided to reimplement it myself.
 
 The first thing needed was to add pagination to the \_config.yml file.
@@ -25,19 +26,20 @@ And then add the paginate link to the bottom of the index page.
 
 Now to add some javascript that would replace the next link with the posts from
 the next page when the user scrolled to it.
+
 ```javascript
-var rebind = function() {
-  $("#next").appear(function() {
+var rebind = function () {
+  $("#next").appear(function () {
     var self = this;
-    $(self).fadeOut(function() {
-      $.get($("#next a").attr('href'), function(data) {
+    $(self).fadeOut(function () {
+      $.get($("#next a").attr("href"), function (data) {
         $(self).remove();
         $("#main").append($(data).find("#posts"));
         rebind();
       });
     });
   });
-}
+};
 ```
 
 This code finds the \#next element and attaches a function to its appear event.

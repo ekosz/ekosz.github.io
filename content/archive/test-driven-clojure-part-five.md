@@ -2,7 +2,8 @@
 title: Test driven clojure part V
 date: 2012-10-11
 ---
-We now have passing tests, but our website isn't very functional.  Lets add
+
+We now have passing tests, but our website isn't very functional. Lets add
 a home page for our (soon to be) millions of visitors.
 
 ### Writing our first Joodo-based test
@@ -17,10 +18,10 @@ server when we acsess the root path.
 ```
 
 `do-get` is a method given to us by the joodo.spec-helper.controller namespace.
-It sends an imaginary post to the path, and seconds the result.  The result is
+It sends an imaginary post to the path, and seconds the result. The result is
 a hash-map of `{:status ..., :headers ..., :body ...}`.
 
-Running this test, we get our next error.  Yay!
+Running this test, we get our next error. Yay!
 
 ```text
 .F
@@ -31,8 +32,8 @@ Failures:
      Attempting to call unbound fn: #'joodo.spec-helpers.controller/*routes*
 ```
 
-What does this mean?  Its our most un-helpful message yet.  The problem is that
-the `do-get` method doesn't know what Joodo controller to test.  The joodo
+What does this mean? Its our most un-helpful message yet. The problem is that
+the `do-get` method doesn't know what Joodo controller to test. The joodo
 spec-helpers gives us a message that will point our tests to the right
 location.
 
@@ -55,7 +56,7 @@ Lets create that handler in our core.clj file.
 (def app-handler)
 ```
 
-Running again we get another error.  Remember whenever the message we get back
+Running again we get another error. Remember whenever the message we get back
 changes, we're making progress.
 
 ```text
@@ -77,7 +78,7 @@ app-hander to reflect that.
 Wrong number of args (1) passed to: core$app-handler
 ```
 
-Great!  Now we know that our app-handler has to take an argument.  We don't
+Great! Now we know that our app-handler has to take an argument. We don't
 know what that argument is yet, but we're slowly learning about Joodo and how
 it works. Lets rewrite our app-hander method to take that argument then print
 it out to the console.
@@ -102,10 +103,10 @@ Failures:
 ```
 
 We've now discovered the last two pieces of information we need to realize
-how Joodo works.  The first is obvious, the argument we receive is the request
-hash-map.  Is has a :request-method key and a :uri key.  The second piece of
-information we've gathered is more hidden.  Joodo expects this method to return
-a response hash.  The test is currently calling (:status nil) which returns
+how Joodo works. The first is obvious, the argument we receive is the request
+hash-map. Is has a :request-method key and a :uri key. The second piece of
+information we've gathered is more hidden. Joodo expects this method to return
+a response hash. The test is currently calling (:status nil) which returns
 nil.
 
 One more rewrite of our core.clj file is all we need to get this test to pass.
@@ -125,8 +126,7 @@ Finished in 0.00065 seconds
 ```
 
 Perfect we've gotten our test to pass and written just enough code to have
-a fully working Joodo application.  We can test it out by running `lein joodo
-server`.
+a fully working Joodo application. We can test it out by running `lein joodo server`.
 
 After that command you can direct your browser to localhost:8080 and see the
 fruit of your labor.
@@ -139,7 +139,7 @@ Problem accessing /. Reason:
     java.lang.RuntimeException: java.io.FileNotFoundException: config/environment.clj (No such file or directory)
 ```
 
-Well thats not good.  Looks like Joodo was expecting a config/environment.clj
+Well thats not good. Looks like Joodo was expecting a config/environment.clj
 file to exist. Lets create that quickly.
 
 ```clojure
@@ -158,7 +158,7 @@ Problem accessing /. Reason:
     java.lang.RuntimeException: java.io.FileNotFoundException: config/development.clj (No such file or directory)
 ```
 
-Well another file missing.  Lets create that too.
+Well another file missing. Lets create that too.
 
 ```clojure
 (alter-env! assoc
@@ -167,10 +167,10 @@ Well another file missing.  Lets create that too.
 ```
 
 This file sets some global configuration for our development environment. One
-last time into the breach.  Lets start our server and see what we get.
+last time into the breach. Lets start our server and see what we get.
 
 ```text
 Hello world!
 ```
 
-You did it!  Congratulations on creating your first Joodo application.
+You did it! Congratulations on creating your first Joodo application.

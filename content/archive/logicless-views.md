@@ -2,8 +2,9 @@
 title: Logic-less views
 date: 2012-08-13
 ---
+
 Views are meant to be dumb displays of simple data. Because of that, views
-should have no unit testing on top of them.  If you feel that you should be unit
+should have no unit testing on top of them. If you feel that you should be unit
 testing your views, your application has not extracted enough functionality
 away from the view layer.
 
@@ -25,9 +26,9 @@ end
 ```
 
 Very simple. Display a letter, if there is one, or display the number of the
-cell.  The only problem was that my view layer was no longer dumb.  It know how
-to count cells.  Even the most simple logic should be extracted out of the view
-layer.  So I created a presenter instead.
+cell. The only problem was that my view layer was no longer dumb. It know how
+to count cells. Even the most simple logic should be extracted out of the view
+layer. So I created a presenter instead.
 
 ```ruby
 class BoardPresenter

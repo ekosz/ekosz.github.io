@@ -2,16 +2,17 @@
 title: Don't bind your dependencies to one another
 date: 2012-11-12
 ---
-A few years ago I was assembling my main computer from scratch.  Trying to
+
+A few years ago I was assembling my main computer from scratch. Trying to
 keep the insides nice and compact, I used zip ties to bind the wires together.
 After assembling the insides of the computer I started working with my
-external accessories.  I had a keyboard, mouse, microphone, and webcam.
-I figured I would use the same principles as I did inside the computer.  Using
-some more zip ties I bound all of my accessories wires together.  This worked
+external accessories. I had a keyboard, mouse, microphone, and webcam.
+I figured I would use the same principles as I did inside the computer. Using
+some more zip ties I bound all of my accessories wires together. This worked
 great up until this week when my new keyboard arrived.
 
 I unwrapped my new keyboard from its packaging and instantly tried to remove my
-old keyboard from my desk.  The problem was that every time I tried to remove
+old keyboard from my desk. The problem was that every time I tried to remove
 the keyboard, the mouse would be dragged off the desk with it. When I tried
 getting my mouse more slack, the microphone would fall over.
 

@@ -2,8 +2,9 @@
 title: Overriding functions in Clojure
 date: 2012-08-22
 ---
+
 While testing in an OO language it is common to mock objects out of the
-picture.  This could be do the fact that the object not yet implemented or
+picture. This could be do the fact that the object not yet implemented or
 maybe it calls out to the third party service you rather not use when testing.
 
 Clojure provides us some tools to do the same thing with functions we may want
@@ -28,10 +29,10 @@ run on the argument.
   (worker arg))
 ```
 
-Now we can pass what ever we want to the function.  In production we call,
+Now we can pass what ever we want to the function. In production we call,
 
 ```clojure
-(do-work-son "arg" third-party/big-function) 
+(do-work-son "arg" third-party/big-function)
 ```
 
 While during the test we can do some thing like,
@@ -45,8 +46,8 @@ Just to test that the function is being called.
 ### Redefinition
 
 Sometimes Dependency Injection is just out of the question or would make your
-code too complicated.  At these times we can redefine functions at run time
-using `with-redefs`.  Here is the above example using this method.
+code too complicated. At these times we can redefine functions at run time
+using `with-redefs`. Here is the above example using this method.
 
 ```clojure
 ;; production code

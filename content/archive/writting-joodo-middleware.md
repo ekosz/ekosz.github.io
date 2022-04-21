@@ -2,16 +2,17 @@
 title: Writing Joodo middleware
 date: 2012-09-04
 ---
+
 While working on a [Joodo](http://www.joodoweb.com/) project, I came across the issue of authentication.
 On a controller by controller basis, we had to redirect users away if they
 weren't authenticated.
 
 In Rails the standard way to handle this use case, is to use a before filter,
-where the method is defined in the application controller.  Joodo doesn't have
+where the method is defined in the application controller. Joodo doesn't have
 before filters, but what it does have is middleware.
 
 Joodo middleware takes a handler and returns a function that takes a request
-and does something with it.  It can modify the request and pass it on to the
+and does something with it. It can modify the request and pass it on to the
 next handler, or completely blow the stack and never call the next handler.
 
 Heres the code I ended up writing as a authentication middleware.
