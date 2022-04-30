@@ -91,6 +91,12 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
       node,
       value: isArchive ? `/archive${value}` : value,
     });
+
+    createNodeField({
+      name: `isFuturePost`,
+      node,
+      value: (new Date(node.frontmatter.date)).getTime() > Date.now() 
+    });
   }
 };
 
@@ -132,6 +138,7 @@ exports.createSchemaCustomization = ({ actions }) => {
 
     type Fields {
       slug: String
+      isFuturePost: Boolean
     }
   `);
 };
