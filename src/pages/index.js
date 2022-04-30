@@ -40,7 +40,7 @@ const BlogIndex = ({ data, location }) => {
             </li>
           );
         })}
-        <li key="achive" class="post-list-item">
+        <li key="achive" className="post-list-item">
           <header>
             <h2>
               <Link to="/archive">Visit the archive</Link>
