@@ -151,19 +151,19 @@ happy with the work I was doing.
 ## Practicing what we preach
 
 At Lattice, we often talk about "Ikigai". "Ikigai" is a Japanese word
-[miss-applied to a Spanish astrology concept][ikigai]. But entomology aside,
+[miss-applied to a Spanish astrology concept][ikigai]. But etymology aside,
 what we're referring to is the concept of having your work be in alignment with
 your purpose and be a source of happiness. We've strived to create an
-environment in Lattice where if an employee no longer feels alignment with their
-role that they’re empowered to take action. Maybe that's as easy as taking
-a break, but often it requires a lot more than that. Sometimes it's changing
-projects or teams. Other times it's trying out a lateral move to a different
-position within the same organization. But we also tell our employees,
-sometimes it's Lattice itself which is the source of lack of satisfaction and
-that is _okay_. It's okay to no longer be satisfied with the work you do at the
-company and to want to seek your next opportunity elsewhere. That is the
-natural cycle of employment and something we're here to support our employees
-through that transition.
+environment in Lattice where if an employee no longer feels alignment with
+their role that they’re empowered to take action. Maybe that's as easy as
+taking a break, but often it requires a lot more than that. Sometimes it's
+changing projects or teams. Other times it's trying out a lateral move to
+a different position within the same organization. But we also tell our
+employees, sometimes it's Lattice itself which is the source of lack of
+satisfaction and that is _okay_. It's okay to no longer be satisfied with the
+work you do at the company and to want to seek your next opportunity elsewhere.
+That is the natural cycle of employment and something we're here to support our
+employees through that transition.
 
 But what I didn't realize when I was speaking about this over the past few
 years was that it would one day apply to myself as well.
